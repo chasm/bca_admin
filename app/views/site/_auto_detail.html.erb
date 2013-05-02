@@ -1,0 +1,320 @@
+<script type="text/template" id="auto_detail">
+  <div class="row">
+    <div class="span12">
+      <h2 class="spaced-less">
+        {{= auto.name() }} #{{= auto.get('stock_number') }}
+        <span class="pull-right {{= auto.get('status') }}">
+          {{= BridgeCity.toTitleCase(auto.get('status')) }}
+          <a id="auto_edit_link" rel="router" href="/auto/{{= auto.get('id') }}/edit"
+            class="btn btn-inverse btn-medium" style="margin-top:-8px">Edit</a>
+        </span>
+      </h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption><span class="req">Identity</span></caption>
+        <tbody>
+          <tr>
+            <th>Stock number</th>
+            <td>{{= auto.get('stock_number') }}</td>
+          </tr>
+          <tr>
+            <th>Year</th>
+            <td>{{= auto.get('year') }}</td>
+          </tr>
+          <tr>
+            <th>Make</th>
+            <td>{{= auto.get('make') }}</td>
+          </tr>
+          <tr>
+            <th>Model</th>
+            <td>{{= auto.get('model') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption><span class="req">Price &amp; Body</span></caption>
+        <tbody>
+          <tr>
+            <th>Price</th>
+            <td>{{= numeral(auto.get('price')).format("$0,0[.]00") }}</td>
+          </tr>
+          <tr>
+            <th>Color</th>
+            <td>{{= auto.get('color') }}</td>
+          </tr>
+          <tr>
+            <th>Style</th>
+            <td>{{= BridgeCity.toTitleCase(auto.get('style')) }}</td>
+          </tr>
+          <tr>
+            <th>Doors</th>
+            <td>{{= auto.get('doors') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Status &amp; Engine</caption>
+        <tbody>
+          <tr>
+            <th>Status</th>
+            <td>{{= BridgeCity.toTitleCase(auto.get('status')) }}</td>
+          </tr>
+          <tr>
+            <th>Cylinders</th>
+            <td>{{= auto.get('cylinders') }}</td>
+          </tr>
+          <tr>
+            <th>Displacement</th>
+            <td>{{= auto.get('displacement') }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Mileage &amp; Service</caption>
+        <tbody>
+          <tr>
+            <th>Mileage</th>
+            <td>
+              {{= numeral(auto.get('mileage')).format('0,0[.]0') }} miles
+            </td>
+          </tr>
+          <tr>
+            <th>Carfax</th>
+            <td>{{= BridgeCity.convertToText(auto.get('carfax')) }}</td>
+          </tr>
+          <tr>
+            <th>Low miles</th>
+            <td>{{= BridgeCity.convertToText(auto.get('low_miles')) }}</td>
+          </tr>
+          <tr>
+            <th>Fully serviced</th>
+            <td>{{= BridgeCity.convertToText(auto.get('fully_serviced')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Drivetrain &amp; brakes</caption>
+        <tbody>
+          <tr>
+            <th>Automatic</th>
+            <td>{{= BridgeCity.convertToText(auto.get('automatic')) }}</td>
+          </tr>
+          <tr>
+            <th>Power brakes</th>
+            <td>{{= BridgeCity.convertToText(auto.get('power_brakes')) }}</td>
+          </tr>
+          <tr>
+            <th>Antilock brakes</th>
+            <td>{{= BridgeCity.convertToText(auto.get('antilock_brakes')) }}</td>
+          </tr>
+          <tr>
+            <th>All-wheel drive</th>
+            <td>{{= BridgeCity.convertToText(auto.get('all_wheel_drive')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Steering</caption>
+        <tbody>
+          <tr>
+            <th>Power steering</th>
+            <td>{{= BridgeCity.convertToText(auto.get('power_steering')) }}</td>
+          </tr>
+          <tr>
+            <th>Tilt steering</th>
+            <td>{{= BridgeCity.convertToText(auto.get('tilt_steering')) }}</td>
+          </tr>
+          <tr>
+            <th>Telescoping steering</th>
+            <td>{{= BridgeCity.convertToText(auto.get('telescoping_steering')) }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Power Options</caption>
+        <tbody>
+          <tr>
+            <th>Cruise control</th>
+            <td>{{= BridgeCity.convertToText(auto.get('cruise_control')) }}</td>
+          </tr>
+          <tr>
+            <th>Power windows</th>
+            <td>{{= BridgeCity.convertToText(auto.get('power_windows')) }}</td>
+          </tr>
+          <tr>
+            <th>Power locks</th>
+            <td>{{= BridgeCity.convertToText(auto.get('power_locks')) }}</td>
+          </tr>
+          <tr>
+            <th>Power mirrors</th>
+            <td>{{= BridgeCity.convertToText(auto.get('power_mirrors')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Climate control</caption>
+        <tbody>
+          <tr>
+            <th>Air conditioning</th>
+            <td>{{= BridgeCity.convertToText(auto.get('air_conditioning')) }}</td>
+          </tr>
+          <tr>
+            <th>Automatic climate control</th>
+            <td>{{= BridgeCity.convertToText(auto.get('auto_climate_control')) }}</td>
+          </tr>
+          <tr>
+            <th>Dual zone</th>
+            <td>{{= BridgeCity.convertToText(auto.get('dual_zone')) }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Entertainment</caption>
+        <tbody>
+          <tr>
+            <th>AM</th>
+            <td>{{= BridgeCity.convertToText(auto.get('am')) }}</td>
+          </tr>
+          <tr>
+            <th>FM</th>
+            <td>{{= BridgeCity.convertToText(auto.get('fm')) }}</td>
+          </tr>
+          <tr>
+            <th>CD</th>
+            <td>{{= BridgeCity.convertToText(auto.get('cd')) }}</td>
+          </tr>
+          <tr>
+            <th>MP3</th>
+            <td>{{= BridgeCity.convertToText(auto.get('mp3')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Interior</caption>
+        <tbody>
+          <tr>
+            <th>Leather</th>
+            <td>{{= BridgeCity.convertToText(auto.get('leather')) }}</td>
+          </tr>
+          <tr>
+            <th>Heated front seats</th>
+            <td>{{= BridgeCity.convertToText(auto.get('heated_seats_front')) }}</td>
+          </tr>
+          <tr>
+            <th>Heated rear seats</th>
+            <td>{{= BridgeCity.convertToText(auto.get('heated_seats_rear')) }}</td>
+          </tr>
+          <tr>
+            <td colspan="2">&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Exterior</caption>
+        <tbody>
+          <tr>
+            <th>Alloy wheels</th>
+            <td>{{= BridgeCity.convertToText(auto.get('alloy_wheels')) }}</td>
+          </tr>
+          <tr>
+            <th>Roof rack</th>
+            <td>{{= BridgeCity.convertToText(auto.get('roof_rack')) }}</td>
+          </tr>
+          <tr>
+            <th>Running boards</th>
+            <td>{{= BridgeCity.convertToText(auto.get('running_boards')) }}</td>
+          </tr>
+          <tr>
+            <th>Tow package</th>
+            <td>{{= BridgeCity.convertToText(auto.get('tow_package')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Recent service</caption>
+        <tbody>
+          <tr>
+            <th>Recent brakes</th>
+            <td>{{= BridgeCity.convertToText(auto.get('recent_brakes')) }}</td>
+          </tr>
+          <tr>
+            <th>Recent tires</th>
+            <td>{{= BridgeCity.convertToText(auto.get('recent_tires')) }}</td>
+          </tr>
+          <tr>
+            <th>Recent paint</th>
+            <td>{{= BridgeCity.convertToText(auto.get('recent_paint')) }}</td>
+          </tr>
+          <tr>
+            <th>Recent timing belt</th>
+            <td>{{= BridgeCity.convertToText(auto.get('recent_timing_belt')) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Special features</caption>
+        <tbody>
+          <tr>
+            <td class="special_features">{{= auto.get('special_features') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Nice-to-have features</caption>
+        <tbody>
+          <tr>
+            <td class="special_features">{{= auto.get('nice_to_have') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="span3">
+      <table class="table table-bordered">
+        <caption>Extra features</caption>
+        <tbody>
+          <tr>
+            <td class="special_features">{{= auto.get('extras') }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  <div>
+</script>

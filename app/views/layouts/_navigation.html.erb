@@ -1,0 +1,11 @@
+<a rel="router" href="/" title="To the dashboard." class="brand">Bridge City Automotive</a>
+<ul class="nav">
+  <li><a rel="router" href="/autos" title="Manage the autos for sale.">Autos</a></li>
+  <li><a rel="router" href="/apps" title="Manage the credit applications.">Apps</a></li>
+  <li><a rel="router" href="/clients" title="Manage the client data.">Clients</a></li>
+</ul>
+<ul class="nav pull-right">
+  <li><%=
+    link_to 'Log out', logout_path
+  %></li>
+</ul>

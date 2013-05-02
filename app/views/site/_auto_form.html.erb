@@ -1,0 +1,266 @@
+<script type="text/template" id="auto_form">
+  <form id="form_for_autos" accept-charset="UTF-8" method="post" action="/automobiles/{{= auto.get('id') }}">
+    <h2>
+      {{ if (auto.fresh()) { }}Add an auto for sale{{ } else { }}Edit detail for {{= auto.get('stock_number') }}{{ } }}
+      <span class="pull-right {{= auto.get('status') }}">
+        <a id="auto_show_link" rel="router" href="/auto/{{= auto.get('id') }}"
+          class="btn btn-danger btn-medium" style="margin-top:-8px">Cancel</a>
+      </span>
+    </h2>
+    <div id="form_for_autos_errors"></div>
+    <div class="row my-buttons">
+      <fieldset class="span3">
+        <legend>Identity (required)</legend>
+        <div style="margin:0;padding:0;display:inline">
+          <input name="utf8" type="hidden" value="✓">
+          <input name="_method" type="hidden" value="put">
+          <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+          <input id="auto_id" name="id" type="hidden" value="{{= auto.get('id') }}">
+        </div>
+        <p>
+          <label for="auto_stock_number">Stock number</label>
+          <input type="text" id="auto_stock_number" name="automobile[stock_number]"
+            class="input-medium" autofocus="true" title="Stock number" value="{{= auto.get('stock_number') }}">
+        </p>
+        <p>
+          <label for="auto_year">Year</label>
+          <input type="text" id="auto_year" name="automobile[year]"
+            class="input-mini" title="Year" value="{{= auto.get('year') }}">
+        </p>
+        <p>
+          <label for="auto_make">Make</label>
+          <input type="text" id="auto_make" name="automobile[make]"
+            class="input-large" title="Make" value="{{= auto.get('make') }}">
+        </p>
+        <p>
+          <label for="auto_model">Model</label>
+          <input type="text" id="auto_model" name="automobile[model]"
+            class="input-large" title="Model" value="{{= auto.get('model') }}">
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Price &amp; Body (required)</legend>
+        <p>
+          <label for="auto_price">Price</label>
+          <span class="input-prepend">
+            <span class="add-on">$</span>
+            <input type="text" id="auto_price" name="automobile[price]"
+              class="input-mini" title="Price" value="{{= auto.get('price') }}">
+          </span>
+        </p>
+        <p>
+          <label for="auto_color">Color</label>
+          <input type="text" id="auto_color" name="automobile[color]"
+            class="input-large" title="Color" value="{{= auto.get('color') }}">
+        </p>
+        <p>
+          <label for="auto_style">Body style</label>
+          <select id="auto_style" name="automobile[style]"
+            class="span2" title="Body style">
+            <% Automobile.styles.each do |s| %>
+              <option value="<%= s %>"{{ if (auto.get('style') === '<%= s %>') { }} selected{{ } }}><%= s.humanize %></option>
+            <% end %>
+          </select>
+        </p>
+        <p>
+          <label for="auto_doors">Doors</label>
+          <input type="text" id="auto_doors" name="automobile[doors]"
+            class="input-mini" title="Doors" value="{{= auto.get('doors') }}">
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Status &amp; Engine</legend>
+        <p>
+          <label for="auto_status">Status</label>
+          <select id="auto_status" name="automobile[status]"
+            class="span2" title="Status">
+            <% Automobile.statuses.each do |s| %>
+              <option value="<%= s %>"{{ if (auto.get('status') === '<%= s %>') { }} selected{{ } }}><%= s.humanize %></option>
+            <% end %>
+          </select>
+        </p>
+        <p>
+          <label for="auto_cylinders">Cylinders</label>
+          <input type="text" id="auto_cylinders" name="automobile[cylinders]"
+            class="input-mini" title="Cylinders" value="{{= auto.get('cylinders') }}">
+        </p>
+        <p>
+          <label for="auto_displacement">Displacement</label>
+          <span class="input-append">
+            <input type="text" id="auto_displacement" name="automobile[displacement]"
+              class="input-mini" title="Displacement" value="{{= auto.get('displacement') }}">
+            <span class="add-on">liters</span>
+          </span>
+        </p>
+        <p class="form_cell">
+          &nbsp;
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Mileage &amp; Service</legend>
+        <p>
+          <span class="input-append">
+          <label for="auto_mileage">Mileage</label>
+            <input type="text" id="auto_mileage" name="automobile[mileage]"
+              class="input-medium" title="Mileage" value="{{= auto.get('mileage') }}">
+            <span class="add-on">miles</span>
+          </span>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('carfax')) { }} active{{ } }}" data-toggle="button" data-attr="carfax">Carfax</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('low_miles')) { }} active{{ } }}" data-toggle="button" data-attr="low_miles">Low Miles</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('fully_serviced')) { }} active{{ } }}" data-toggle="button" data-attr="fully_serviced">Fully Serviced</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Drivetrain &amp; Brakes</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('automatic')) { }} active{{ } }}" data-toggle="button" data-attr="automatic">Automatic</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('power_brakes')) { }} active{{ } }}" data-toggle="button" data-attr="power_brakes">Power Brakes</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('antilock_brakes')) { }} active{{ } }}" data-toggle="button" data-attr="antilock_brakes">Antilock Brakes</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('all_wheel_drive')) { }} active{{ } }}" data-toggle="button" data-attr="all_wheel_drive">All Wheel Drive</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Steering</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('power_steering')) { }} active{{ } }}" data-toggle="button" data-attr="power_steering">Power Steering</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('tilt_steering')) { }} active{{ } }}" data-toggle="button" data-attr="tilt_steering">Tilt Steering</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('telescoping_steering')) { }} active{{ } }}" data-toggle="button" data-attr="telescoping_steering">Telescoping Steering</button>
+        </p>
+        <p class="form_cell">
+          &nbsp;
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Power Options</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('cruise_control')) { }} active{{ } }}" data-toggle="button" data-attr="cruise_control">Cruise Control</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('power_windows')) { }} active{{ } }}" data-toggle="button" data-attr="power_windows">Power Windows</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('power_locks')) { }} active{{ } }}" data-toggle="button" data-attr="power_locks">Power Locks</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('power_mirrors')) { }} active{{ } }}" data-toggle="button" data-attr="power_mirrors">Power Mirrors</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Climate Control</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('air_conditioning')) { }} active{{ } }}" data-toggle="button" data-attr="air_conditioning">Air Conditioning</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('auto_climate_control')) { }} active{{ } }}" data-toggle="button" data-attr="auto_climate_control">Auto Climate Control</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('dual_zone')) { }} active{{ } }}" data-toggle="button" data-attr="dual_zone">Dual Zone</button>
+        </p>
+        <p class="form_cell">
+          &nbsp;
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Entertainment</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('am')) { }} active{{ } }}" data-toggle="button" data-attr="am">AM Radio</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('fm')) { }} active{{ } }}" data-toggle="button" data-attr="fm">FM Radio</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('cd')) { }} active{{ } }}" data-toggle="button" data-attr="cd">CD Player</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('')) { }} active{{ } }}" data-toggle="button" data-attr="mp3">MP3 Player</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Interior</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('leather')) { }} active{{ } }}" data-toggle="button" data-attr="leather">Leather</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('heated_seats_front')) { }} active{{ } }}" data-toggle="button" data-attr="heated_seats_front">Heated Seats (Front)</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('heated_seats_rear')) { }} active{{ } }}" data-toggle="button" data-attr="heated_seats_rear">Heated Seats (Rear)</button>
+        </p>
+        <p class="form_cell">
+          &nbsp;
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Exterior</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('alloy_wheels')) { }} active{{ } }}" data-toggle="button" data-attr="alloy_wheels">Alloy Wheels</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('roof_rack')) { }} active{{ } }}" data-toggle="button" data-attr="roof_rack">Roof Rack</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('running_boards')) { }} active{{ } }}" data-toggle="button" data-attr="running_boards">Running Boards</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('tow_package')) { }} active{{ } }}" data-toggle="button" data-attr="tow_package">Tow Package</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Recent Service</legend>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('recent_brakes')) { }} active{{ } }}" data-toggle="button" data-attr="recent_brakes">Recent Brakes</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('recent_tires')) { }} active{{ } }}" data-toggle="button" data-attr="recent_tires">Recent Tires</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('recent_paint')) { }} active{{ } }}" data-toggle="button" data-attr="recent_paint">Recent Paint</button>
+        </p>
+        <p class="form_cell">
+          <button type="button" class="btn btn-block btn-large{{ if (auto.get('recent_timing_belt')) { }} active{{ } }}" data-toggle="button" data-attr="recent_timing_belt">Recent Timing Belt</button>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Special Features</legend>
+        <p>
+          <textarea id="auto_special_features" class="span3" placeholder="Special features go at the top" style="height:270px" name="automobile[special_features]">{{= auto.get('special_features') }}</textarea>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Nice-to-Have Features</legend>
+        <p>
+          <textarea id="auto_nice_to_have" class="span3" placeholder="Nice-to-have features go in the middle" style="height:270px" name="automobile[nice_to_have]">{{= auto.get('nice_to_have') }}</textarea>
+        </p>
+      </fieldset>
+      <fieldset class="span3">
+        <legend>Extra Features</legend>
+        <p>
+          <textarea id="auto_extras" class="span3" placeholder="Extra features go at the bottom" style="height:270px" name="automobile[extras]">{{= auto.get('extras') }}</textarea>
+        </p>
+      </fieldset>
+    </div>
+    <div class="row">
+      <div class="span12">
+        <p class="clearfix">
+          <input id="auto_form_submit" type="submit" class="btn btn-info" value="{{ if (auto.fresh()) { }}Add{{ } else { }}Update{{ } }}">
+        </p>
+      </div>
+    </div>
+  </form>
+</script>

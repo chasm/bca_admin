@@ -1,0 +1,289 @@
+<div class="row">
+  <div class="span12">
+    <h2 class="spaced-less">
+      <%= @automobile.name %> #<%= @automobile.stock_number %>
+      <span class="pull-right <%= @automobile.status %>">
+        <%= @automobile.status.humanize %>
+        <%= link_to "Edit", admin_auto_edit_path(@automobile), :remote => true, :class => 'btn btn-info btn-large', :id => 'admin_auto_edit_link' %>
+      </span>
+    </h2>
+  </div>
+</div>
+<div class="row">
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption><span class="req">Required</span></caption>
+      <tbody>
+        <tr>
+          <th>Stock number</th>
+          <td><%= @automobile.stock_number %></td>
+        </tr>
+        <tr>
+          <th>Year</th>
+          <td><%= @automobile.year %></td>
+        </tr>
+        <tr>
+          <th>Make</th>
+          <td><%= @automobile.make %></td>
+        </tr>
+        <tr>
+          <th>Model</th>
+          <td><%= @automobile.model %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption><span class="req">Required</span></caption>
+      <tbody>
+        <tr>
+          <th>Price</th>
+          <td><%= number_to_currency(@automobile.price, precision: 0) %></td>
+        </tr>
+        <tr>
+          <th>Color</th>
+          <td><%= @automobile.color %></td>
+        </tr>
+        <tr>
+          <th>Style</th>
+          <td><%= @automobile.style.humanize %></td>
+        </tr>
+        <tr>
+          <th>Doors</th>
+          <td><%= @automobile.doors %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Optional</caption>
+      <tbody>
+        <tr>
+          <th>Cylinders</th>
+          <td><%= @automobile.cylinders %></td>
+        </tr>
+        <tr>
+          <th>Displacement</th>
+          <td><%= @automobile.displacement %></td>
+        </tr>
+        <tr>
+          <th>Mileage</th>
+          <td>
+            <%= number_with_precision(@automobile.mileage, :delimiter => ',', :precision => 0) %>
+            <%= if @automobile.carfax then "(Carfax)" end %>
+          </td>
+        </tr>
+        <tr>
+          <th>Low miles</th>
+          <td><%= convert_to_text(@automobile.low_miles) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Steering</caption>
+      <tbody>
+        <tr>
+          <th>Power steering</th>
+          <td><%= convert_to_text(@automobile.power_steering) %></td>
+        </tr>
+        <tr>
+          <th>Tilt steering</th>
+          <td><%= convert_to_text(@automobile.tilt_steering) %></td>
+        </tr>
+        <tr>
+          <th>Telescoping steering</th>
+          <td><%= convert_to_text(@automobile.telescoping_steering) %></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Drivetrain &amp; brakes</caption>
+      <tbody>
+        <tr>
+          <th>Automatic</th>
+          <td><%= convert_to_text(@automobile.automatic) %></td>
+        </tr>
+        <tr>
+          <th>All-wheel drive</th>
+          <td><%= convert_to_text(@automobile.all_wheel_drive) %></td>
+        </tr>
+        <tr>
+          <th>Power brakes</th>
+          <td><%= convert_to_text(@automobile.power_brakes) %></td>
+        </tr>
+        <tr>
+          <th>Antilock brakes</th>
+          <td><%= convert_to_text(@automobile.antilock_brakes) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Power Options</caption>
+      <tbody>
+        <tr>
+          <th>Cruise control</th>
+          <td><%= convert_to_text(@automobile.cruise_control) %></td>
+        </tr>
+        <tr>
+          <th>Power windows</th>
+          <td><%= convert_to_text(@automobile.power_windows) %></td>
+        </tr>
+        <tr>
+          <th>Power locks</th>
+          <td><%= convert_to_text(@automobile.power_locks) %></td>
+        </tr>
+        <tr>
+          <th>Power mirrors</th>
+          <td><%= convert_to_text(@automobile.power_mirrors) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Climate control</caption>
+      <tbody>
+        <tr>
+          <th>Air conditioning</th>
+          <td><%= convert_to_text(@automobile.air_conditioning) %></td>
+        </tr>
+        <tr>
+          <th>Automatic climate control</th>
+          <td><%= convert_to_text(@automobile.auto_climate_control) %></td>
+        </tr>
+        <tr>
+          <th>Dual zone</th>
+          <td><%= convert_to_text(@automobile.dual_zone) %></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Music</caption>
+      <tbody>
+        <tr>
+          <th>AM</th>
+          <td><%= convert_to_text(@automobile.am) %></td>
+        </tr>
+        <tr>
+          <th>FM</th>
+          <td><%= convert_to_text(@automobile.fm) %></td>
+        </tr>
+        <tr>
+          <th>CD</th>
+          <td><%= convert_to_text(@automobile.cd) %></td>
+        </tr>
+        <tr>
+          <th>MP3</th>
+          <td><%= convert_to_text(@automobile.mp3) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Interior</caption>
+      <tbody>
+        <tr>
+          <th>Leather</th>
+          <td><%= convert_to_text(@automobile.leather) %></td>
+        </tr>
+        <tr>
+          <th>Heated front seats</th>
+          <td><%= convert_to_text(@automobile.heated_seats_front) %></td>
+        </tr>
+        <tr>
+          <th>Heated rear seats</th>
+          <td><%= convert_to_text(@automobile.heated_seats_rear) %></td>
+        </tr>
+        <tr>
+          <td colspan="2">&nbsp;</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Exterior</caption>
+      <tbody>
+        <tr>
+          <th>Alloy wheels</th>
+          <td><%= convert_to_text(@automobile.alloy_wheels) %></td>
+        </tr>
+        <tr>
+          <th>Roof rack</th>
+          <td><%= convert_to_text(@automobile.roof_rack) %></td>
+        </tr>
+        <tr>
+          <th>Running boards</th>
+          <td><%= convert_to_text(@automobile.running_boards) %></td>
+        </tr>
+        <tr>
+          <th>Tow package</th>
+          <td><%= convert_to_text(@automobile.tow_package) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Recent service</caption>
+      <tbody>
+        <tr>
+          <th>Recent brakes</th>
+          <td><%= convert_to_text(@automobile.recent_brakes) %></td>
+        </tr>
+        <tr>
+          <th>Recent tires</th>
+          <td><%= convert_to_text(@automobile.recent_tires) %></td>
+        </tr>
+        <tr>
+          <th>Recent paint</th>
+          <td><%= convert_to_text(@automobile.recent_paint) %></td>
+        </tr>
+        <tr>
+          <th>Recent timing belt</th>
+          <td><%= convert_to_text(@automobile.recent_timing_belt) %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span3">
+    <table class="table table-bordered">
+      <caption>Details</caption>
+      <tbody>
+        <tr>
+          <th>Fully serviced</th>
+          <td><%= convert_to_text(@automobile.fully_serviced) %></td>
+        </tr>
+        <tr>
+          <th>Special features</th>
+          <td><%= @automobile.special_features %></td>
+        </tr>
+        <tr>
+          <th>Nice to have</th>
+          <td><%= @automobile.nice_to_have %></td>
+        </tr>
+        <tr>
+          <th>Extras</th>
+          <td><%= @automobile.extras %></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+<div>
