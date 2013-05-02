@@ -13,20 +13,7 @@
     </thead>
     <tbody>
       {{ _.each(autos, function(auto) { }}
-        <tr>
-          <td><a href="/auto/{{= auto.get('id') }}" rel="router">{{= auto.name() }}</a></td>
-          <td>{{= auto.get('stock_number') }}</td>
-          <td>{{= auto.get('color') }}</td>
-          <td>{{= BridgeCity.toTitleCase(auto.get('style')) }}</td>
-          <td class="number-column">{{= numeral(auto.get('price')).format("$0,0[.]00") }}</td>
-          <td>
-            <select id="{{= auto.id }}" name="{{= auto.id }}" class="span2 status-selector">
-              <% Automobile.statuses.each do |s| %>
-                <option value="<%= s %>"{{ if (auto.get('status') === '<%= s %>') { }} selected{{ } }}><%= s.humanize %></option>
-              <% end %>
-            </select>
-          </td>
-        </tr>
+
       {{ }); }}
     </tbody>
   </table>
