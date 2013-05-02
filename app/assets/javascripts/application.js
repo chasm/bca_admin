@@ -17,7 +17,11 @@
 //= require numeral
 //= require moment
 //= require backbone
+//= require backbone-relational
 //= require bootstrap-button
+//= require jquery.noty
+//= require_tree ./layouts
+//= require_tree ./themes
 //= require app
 //= require_self
 
@@ -31,6 +35,8 @@
 })();
 
 $(function(){
+  $.noty.defaults.layout = 'bottomRight';
+  
   var update_status = function(e){
     console.log("running update_status");
     $.ajax({

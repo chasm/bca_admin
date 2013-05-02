@@ -1,6 +1,18 @@
-BridgeCity.Automobile = Backbone.Model.extend({
-  urlRoot: '/automobiles',
+BridgeCity.Automobile = Backbone.RelationalModel.extend({
+  urlRoot: '/api/automobiles',
   
+  relations: [
+    {
+      type: Backbone.HasMany,
+      key: 'credit_applications',
+      relatedModel: 'BridgeCity.CreditApplication',
+      reverseRelation: {
+        type: Backbone.HasOne,
+        key: 'automobile'
+      }
+    }
+  ],
+
   initialize: function() {
     "use strict";
     

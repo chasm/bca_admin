@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
             :referer => request.referer, :logged_in_at => DateTime.now
           session[:login_id] = login.id
       
-          redirect_to root_url, :notice => "Logged in!"
+          redirect_to root_url, :notice => "Welcome to the Bridge City Automotive website admin interface."
         else
           flash.now.alert = "Invalid email or password"
           render "new"
@@ -40,7 +40,7 @@ class SessionsController < ApplicationController
     end
     session[:login_id] = nil
     
-    redirect_to login_url, :notice => "Logged out!"
+    redirect_to login_url, :notice => "You have successfully logged out. Please do come back soon."
   end
   
   # GET /reset/:code

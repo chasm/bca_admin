@@ -9,7 +9,7 @@ BridgeCity.Router = Backbone.Router.extend({
   
     this.route("apps", "apps", this.apps);
   
-    this.route("clients", "clients", this.clients);
+    this.route("users", "users", this.users);
   },
 
   index: function() {
@@ -55,18 +55,18 @@ BridgeCity.Router = Backbone.Router.extend({
     });
   },
 
-  clients: function() {
-    BridgeCity.clients = new BridgeCity.Clients();
+  users: function() {
+    BridgeCity.users = new BridgeCity.Users();
     
-    BridgeCity.clients.fetch({
+    BridgeCity.users.fetch({
       reset: true,
-      success: function(clients) {
+      success: function(users) {
         var models, templ;
         
-        models = clients.models;
-        templ  = _.template($('#client_list').html());
+        models = users.models;
+        templ  = _.template($('#user_list').html());
         
-        $('#insert_view_here').html(templ({clients: models}));
+        $('#insert_view_here').html(templ({users: models}));
       }
     });
   }

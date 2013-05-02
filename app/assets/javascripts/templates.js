@@ -414,13 +414,13 @@ __p+='\n  </ul>\n';
 return __p;
 }
 
-BridgeCity.templ_client_list = function(obj){
+BridgeCity.templ_user_list = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n  <h1>Clients</h1>\n  <ul>\n    ';
- _.each(clients, function(client) { 
+__p+='\n  <h1>Users</h1>\n  <ul>\n    ';
+ _.each(users, function(user) { 
 __p+=' <li>'+
-((__t=( client.name() ))==null?'':__t)+
+((__t=( user.name() ))==null?'':__t)+
 '</li> ';
  }); 
 __p+='\n  </ul>\n';

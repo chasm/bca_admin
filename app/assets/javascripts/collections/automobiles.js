@@ -1,4 +1,4 @@
 BridgeCity.Automobiles = Backbone.Collection.extend({
   model: BridgeCity.Automobile,
-  url: '/automobiles'
+  url: '/api/automobiles'
 });

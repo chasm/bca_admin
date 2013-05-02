@@ -25,18 +25,20 @@ Bca::Application.routes.draw do
   get "client/:id" => "site#index", :as => :clients
   get "client/:id/edit" => "site#index", :as => :clients
 
-  resources :automobiles, :except => [:new, :edit, :create] do
-    resources :credit_applications, :except => [:new, :edit, :create]
-  end
+  scope "/api" do
+    resources :automobiles, :except => [:new, :edit, :create] do
+      resources :credit_applications, :except => [:new, :edit, :create]
+    end
 
-  resources :credit_applications, :except => [:new, :edit, :create] do
-    resources :employers, :except => [ :new, :edit ]
-    resources :locations, :except => [ :new, :edit ]
-  end
+    resources :credit_applications, :except => [:new, :edit, :create] do
+      resources :employers, :except => [ :new, :edit ]
+      resources :locations, :except => [ :new, :edit ]
+    end
   
-  resources :users, :except => [ :new, :edit ] do
-    resources :phone_numbers, :except => [ :new, :edit ]
-    resources :logins, :only => [ :index, :show, :destroy ]
+    resources :users, :except => [ :new, :edit ] do
+      resources :phone_numbers, :except => [ :new, :edit ]
+      resources :logins, :only => [ :index, :show, :destroy ]
+    end
   end
 
   root :to => 'site#index'

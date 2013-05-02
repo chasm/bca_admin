@@ -42,8 +42,8 @@ class SiteController < ApplicationController
   def apps
   end
 
-  # GET /clients
-  def clients
+  # GET /users
+  def users
   end
   
   # GET /uuids

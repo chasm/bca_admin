@@ -127,7 +127,7 @@ $(function(){
 
   BridgeCity.autos = new BridgeCity.Automobiles();
   BridgeCity.apps = new BridgeCity.CreditApplications();
-  BridgeCity.clients = new BridgeCity.Clients();
+  BridgeCity.users = new BridgeCity.Users();
   BridgeCity.router = new BridgeCity.Router();
 
   BridgeCity.router.on('all', BridgeCity.resetNavigation);

@@ -1,8 +1,13 @@
 <% flash.each do |name, msg| %>
   <% if msg.is_a?(String) %>
-    <div class="alert alert-<%= name == :notice ? "success" : "error" %>">
-      <a class="close" data-dismiss="alert">&#215;</a>
-      <%= content_tag :div, msg, :id => "flash_#{name}" %>
-    </div>
+    <script type="text/javascript">
+      $(function() {
+        noty({
+          type: '<%= name == :notice ? "success" : "alert" %>',
+          text: '<%= msg %>',
+          timeout: <%= name == :notice ? 4000 : 30000 %>
+        });
+      });
+    </script>
   <% end %>
 <% end %>
