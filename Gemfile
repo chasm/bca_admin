@@ -7,7 +7,7 @@ gem 'rails', '3.2.13'
 
 gem 'mongo_mapper'
 gem 'bson_ext'
-gem 'bootstrap-sass'
+gem "bootstrap-sass", "2.3.1.0"
 gem "paperclip", "~> 3.0"
 
 group :development do
