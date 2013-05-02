@@ -1,0 +1,11 @@
+<script type="text/template" id="auto_row">
+  <tr>
+    <td><a href="/autos/{{= auto.id}}">{{= auto.get('name') }}</a></td>
+    <td>{{= auto.get('stock_number') }}</td>
+    <td>{{= auto.get('color') }}</td>
+    <td>{{= BridgeCity.toTitleCase(auto.get('style')) }}</td>
+    <td class="number-column">{{= numeral(auto.get('price')).format('$0,0[.]00') }}</td>
+    <td class="number-column">{{= auto.get('credit_applications').length }}</td>
+    <td>{{= BridgeCity.toTitleCase(auto.get('status')) }}</td>
+  </tr>
+</script>

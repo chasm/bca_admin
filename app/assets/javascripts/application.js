@@ -22,7 +22,7 @@
 //= require jquery.noty
 //= require_tree ./layouts
 //= require_tree ./themes
-//= require app
+//= require ./app/app
 //= require_self
 
 // Typekit

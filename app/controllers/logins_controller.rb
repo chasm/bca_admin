@@ -1,7 +1,7 @@
 class LoginsController < ApplicationController
   # GET /users/:user_id/logins
   def index
-    @user = User.find(params[:id])
+    @user = User.find(params[:user_id])
     @logins = @user.logins
     
     render :json => @logins

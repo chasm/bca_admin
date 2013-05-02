@@ -1,29 +1,29 @@
 Bca::Application.routes.draw do
-  get "login" => "sessions#new"
+  get "login" => "sessions#new", :as => :login
   post "login" => "sessions#create"
   
-  get "logout" => "sessions#destroy"
+  get "logout" => "sessions#destroy", :as => :logout
   
-  get "reset/:code" => "sessions#reset"
+  get "reset/:code" => "sessions#reset", :as => :password_form
   put "reset/:id" => "sessions#reset_password"
   
-  get "uuids" => "site#uuids"
-  get "uuids/:count" => "site#uuids"
+  get "uuids" => "site#uuids", :as => :uuid
+  get "uuids/:count" => "site#uuids", :as => :uuids
   
   get "autos" => "site#index", :as => :autos
-  get "autos/new" => "site#index", :as => :clients
-  get "auto/:id" => "site#index", :as => :clients
-  get "auto/:id/edit" => "site#index", :as => :clients
+  get "autos/new" => "site#index", :as => :autos_new
+  get "auto/:id" => "site#index", :as => :autos_detail
+  get "auto/:id/edit" => "site#index", :as => :autos_edit
   
   get "apps" => "site#index", :as => :apps
-  get "apps/new" => "site#index", :as => :clients
-  get "app/:id" => "site#index", :as => :clients
-  get "app/:id/edit" => "site#index", :as => :clients
+  get "apps/new" => "site#index", :as => :apps_new
+  get "app/:id" => "site#index", :as => :apps_detail
+  get "app/:id/edit" => "site#index", :as => :apps_edit
   
-  get "clients" => "site#index", :as => :clients
-  get "clients/new" => "site#index", :as => :clients
-  get "client/:id" => "site#index", :as => :clients
-  get "client/:id/edit" => "site#index", :as => :clients
+  get "users" => "site#index", :as => :users
+  get "users/new" => "site#index", :as => :users_new
+  get "user/:id" => "site#index", :as => :users_detail
+  get "user/:id/edit" => "site#index", :as => :users_edit
 
   scope "/api" do
     resources :automobiles, :except => [:new, :edit, :create] do

@@ -20,14 +20,7 @@ BridgeCity.Automobile = Backbone.RelationalModel.extend({
   },
   
   defaults: {
-    id: '',
-    stock_number: '',
-    year: '',
-    make: '',
-    model: '',
     style: 'sedan',
-    color: '',
-    price: '',
     status: 'available'
   },
   

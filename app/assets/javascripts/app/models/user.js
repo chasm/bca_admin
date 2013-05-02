@@ -7,8 +7,17 @@ BridgeCity.User = Backbone.RelationalModel.extend({
       key: 'credit_applications',
       relatedModel: 'BridgeCity.CreditApplication',
       reverseRelation: {
-        key: 'automobile',
-        includeInJSON: 'id'
+        type: Backbone.HasOne,
+        key: 'user'
+      }
+    },
+    {
+      type: Backbone.HasMany,
+      key: 'logins',
+      relatedModel: 'BridgeCity.Login',
+      reverseRelation: {
+        type: Backbone.HasOne,
+        key: 'user'
       }
     }
   ],
@@ -23,5 +32,11 @@ BridgeCity.User = Backbone.RelationalModel.extend({
     "use strict";
     
     return [this.get("name_first"), this.get("name_mi"), this.get("name_last")].join(' ');
+  },
+  
+  fresh: function() {
+    "use strict";
+    
+    return _.has(this.changed, 'id');
   }
 });

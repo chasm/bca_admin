@@ -1,0 +1,5 @@
+<script type="text/template" id="credit_application">
+  <li class="credit-application">
+    {{= BridgeCity.toTitleCase(credit_application.get('status')) }} ({{= moment(credit_application.created_at).format('LL') }})
+  </li>
+</script>
