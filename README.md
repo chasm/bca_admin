@@ -1,4 +1,2 @@
-cars
-====
 
-Example real world app for an auto brokerage.
+Bridge City Auto admin example
