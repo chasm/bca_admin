@@ -85,7 +85,6 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
-    railroady (1.1.0)
     rails (3.2.13)
       actionmailer (= 3.2.13)
       actionpack (= 3.2.13)
@@ -136,7 +135,6 @@ DEPENDENCIES
   jquery-rails
   mongo_mapper
   paperclip (~> 3.0)
-  railroady
   rails (= 3.2.13)
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)

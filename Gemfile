@@ -11,7 +11,6 @@ gem "bootstrap-sass", "2.3.1.0"
 gem "paperclip", "~> 3.0"
 
 group :development do
-  gem 'railroady'
   gem "better_errors"
   gem "binding_of_caller"
 end
