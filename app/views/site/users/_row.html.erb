@@ -1,10 +1,7 @@
-<script type="text/template" id="auto_row">
-  <tr>
-    <td><a href="/users/{{= user.id}}">{{= user.get('name') }}</a></td>
-    <td>{{= auto.get('name') }}</td>
-    <td>{{= auto.get('email_address') }}</td>
-    <td>{{= phone_numbers }}</td>
-    <td>{{= credit_applications }}</td>
-    <td class="number-column">{{= auto.get('logins').length }}</td>
-  </tr>
+<script type="text/template" id="user_row">
+  <td><a href="/users/{{= user.id}}">{{= user.get('name') }}</a></td>
+  <td>{{= user.get('email_address') }}</td>
+  <td>{{= phone_numbers }}</td>
+  <td>{{= credit_applications }}</td>
+  <td class="number-column">{{= user.get('logins').length }}</td>
 </script>

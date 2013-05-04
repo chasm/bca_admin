@@ -18,6 +18,7 @@
 //= require moment
 //= require backbone
 //= require backbone-relational
+//= require backbone.marionette
 //= require bootstrap-button
 //= require jquery.noty
 //= require_tree ./layouts

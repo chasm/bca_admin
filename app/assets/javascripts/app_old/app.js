@@ -1,11 +1,11 @@
 /* global _, BridgeCity, Backbone */
 
-//= require back
+//= require ./back
 //= require_tree ./models
 //= require_tree ./collections
 //= require_tree ./views
-//= require router
-//= require templates
+//= require ./router
+//= require ./templates
 //= require_self
 
 $(function(){

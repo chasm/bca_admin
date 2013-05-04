@@ -363,7 +363,7 @@ var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments
 with(obj||{}){
 __p+='\n  <table class="table table-bordered table-hover spaced">\n    <caption>'+
 ((__t=( caption ))==null?'':__t)+
-'</caption>\n    <thead>\n      <tr>\n        <th>Auto</th>\n        <th>Stock Number</th>\n        <th>Color</th>\n        <th>Style</th>\n        <th class="number-column">Price</th>\n        <th>Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      '+
+'</caption>\n    <thead>\n      <tr>\n        <th>Auto</th>\n        <th>Stock Number</th>\n        <th>Color</th>\n        <th>Style</th>\n        <th class="number-column">Price</th>\n        <th class="number-column">Apps</th>\n        <th>Status</th>\n      </tr>\n    </thead>\n    <tbody>\n      '+
 ((__t=( rows ))==null?'':__t)+
 '\n    </tbody>\n  </table>\n';
 }
@@ -381,23 +381,23 @@ return __p;
 BridgeCity.templ_auto_row = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n  <tr>\n    <td><a href="/autos/'+
+__p+='\n  <td><a href="/autos/'+
 ((__t=( auto.id))==null?'':__t)+
 '">'+
 ((__t=( auto.get('name') ))==null?'':__t)+
-'</a></td>\n    <td>'+
+'</a></td>\n  <td>'+
 ((__t=( auto.get('stock_number') ))==null?'':__t)+
-'</td>\n    <td>'+
+'</td>\n  <td>'+
 ((__t=( auto.get('color') ))==null?'':__t)+
-'</td>\n    <td>'+
+'</td>\n  <td>'+
 ((__t=( BridgeCity.toTitleCase(auto.get('style')) ))==null?'':__t)+
-'</td>\n    <td class="number-column">'+
+'</td>\n  <td class="number-column">'+
 ((__t=( numeral(auto.get('price')).format('$0,0[.]00') ))==null?'':__t)+
-'</td>\n    <td class="number-column">'+
+'</td>\n  <td class="number-column">'+
 ((__t=( auto.get('credit_applications').length ))==null?'':__t)+
-'</td>\n    <td>'+
+'</td>\n  <td>'+
 ((__t=( BridgeCity.toTitleCase(auto.get('status')) ))==null?'':__t)+
-'</td>\n  </tr>\n';
+'</td>\n';
 }
 return __p;
 }
@@ -426,24 +426,22 @@ __p+='\n    </tbody>\n  </table>\n';
 return __p;
 }
 
-BridgeCity.templ_auto_row = function(obj){
+BridgeCity.templ_user_row = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n  <tr>\n    <td><a href="/users/'+
+__p+='\n  <td><a href="/users/'+
 ((__t=( user.id))==null?'':__t)+
 '">'+
 ((__t=( user.get('name') ))==null?'':__t)+
-'</a></td>\n    <td>'+
-((__t=( auto.get('name') ))==null?'':__t)+
-'</td>\n    <td>'+
-((__t=( auto.get('email_address') ))==null?'':__t)+
-'</td>\n    <td>'+
+'</a></td>\n  <td>'+
+((__t=( user.get('email_address') ))==null?'':__t)+
+'</td>\n  <td>'+
 ((__t=( phone_numbers ))==null?'':__t)+
-'</td>\n    <td>'+
+'</td>\n  <td>'+
 ((__t=( credit_applications ))==null?'':__t)+
-'</td>\n    <td class="number-column">'+
-((__t=( auto.get('logins').length ))==null?'':__t)+
-'</td>\n  </tr>\n';
+'</td>\n  <td class="number-column">'+
+((__t=( user.get('logins').length ))==null?'':__t)+
+'</td>\n';
 }
 return __p;
 }
@@ -451,11 +449,11 @@ return __p;
 BridgeCity.templ_credit_application = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n  <li class="credit-application">\n    '+
+__p+='\n    '+
 ((__t=( BridgeCity.toTitleCase(credit_application.get('status')) ))==null?'':__t)+
 ' ('+
 ((__t=( moment(credit_application.created_at).format('LL') ))==null?'':__t)+
-')\n  </li>\n';
+')\n';
 }
 return __p;
 }
@@ -463,11 +461,11 @@ return __p;
 BridgeCity.templ_phone_number = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
-__p+='\n  <li class="phone-number">'+
+__p+=' '+
 ((__t=( phone_number.phone_type ))==null?'':__t)+
 ': '+
 ((__t=( phone_number.phone_number ))==null?'':__t)+
-'</li>\n';
+'';
 }
 return __p;
 }

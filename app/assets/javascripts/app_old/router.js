@@ -63,10 +63,12 @@ BridgeCity.Router = Backbone.Router.extend({
       success: function(users) {
         var models, templ;
         
-        models = users.models;
-        templ  = _.template($('#user_list').html());
-        
-        $('#insert_view_here').html(templ({users: models}));
+        console.log(users);
+        BridgeCity.userListView = new BridgeCity.UserListView();
+
+        console.log("---userListView.el---");
+        console.log(BridgeCity.userListView.el);
+        console.log("---end---");
       }
     });
   }
