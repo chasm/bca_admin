@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   # GET /login
   def new
-    render :new, :layout => false
+    render :new, :layout => 'layouts/public'
   end
   
   # POST /login
@@ -34,10 +34,12 @@ class SessionsController < ApplicationController
     session[:user_id] = nil
     
     login = Login.find(session[:login_id])
+    
     if login
       login.logged_out_at = DateTime.now
       login.save
     end
+    
     session[:login_id] = nil
     
     redirect_to login_url, :notice => "You have successfully logged out. Please do come back soon."
@@ -48,14 +50,17 @@ class SessionsController < ApplicationController
     @user = User.find_by_code(params[:code])
   end
   
-  # PUT /reset/:id
+  # PUT /reset/:code
   def reset_password
-    @user = User.find(params[:id])
+    @user = User.find_by_code(params[:code])
+    
     if @user.update_attributes(params[:user])
       @user.code = nil
       @user.expires_at = nil
       @user.save
+      
       session[:user_id] = @user.id
+      
       redirect_to root_url, :notice => "You're password has been reset."
     else
       render :text => @user.name

@@ -5,7 +5,7 @@ Bca::Application.routes.draw do
   get "logout" => "sessions#destroy", :as => :logout
   
   get "reset/:code" => "sessions#reset", :as => :password_form
-  put "reset/:id" => "sessions#reset_password"
+  put "reset/:code" => "sessions#reset_password"
   
   get "uuids" => "site#uuids", :as => :uuid
   get "uuids/:count" => "site#uuids", :as => :uuids

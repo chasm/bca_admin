@@ -39,5 +39,14 @@
     <% render :partial => 'site/users/phone_number' %>
     
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "app/app" %>
+    
+    <script type="text/javascript">
+      $(function() {
+        BridgeCity.uuids = <%= load_uuids.to_s.html_safe %>;
+        BridgeCity.styles = <%= Automobile.styles.to_s.html_safe %>;
+        BridgeCity.statuses = <%= Automobile.statuses.to_s.html_safe %>;
+      });
+    </script>
   </body>
 </html>

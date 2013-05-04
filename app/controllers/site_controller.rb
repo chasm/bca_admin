@@ -1,5 +1,5 @@
 class SiteController < ApplicationController
-  # before_filter :authorize, :except => [ :login ]
+  # before_filter :authorize, :except => [ :uuids ]
   
   # GET /
   def index

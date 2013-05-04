@@ -3,7 +3,7 @@
     <script type="text/javascript">
       $(function() {
         noty({
-          type: '<%= name == :notice ? "success" : "alert" %>',
+          type: '<%= name == :notice ? "success" : "error" %>',
           text: '<%= msg %>',
           timeout: <%= name == :notice ? 4000 : 30000 %>
         });

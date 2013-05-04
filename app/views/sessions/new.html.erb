@@ -1,64 +1,63 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Bridge City Automotive" %></title>
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <%= stylesheet_link_tag "application", :media => "all" %>
-    <%= javascript_include_tag "application" %>
-    <%= csrf_meta_tags %>
-    <%= yield(:head) %>
-  </head>
-  <body>
-    <section class="wrap">
-      <header class="navbar navbar-fixed-top">
-        <nav class="navbar-inner">
-          <div class="container">
-            <span class="brand">Bridge City Automotive</span>
-          </div>
-        </nav>
-      </header>
-      <div id="main" role="main" class="main">
-        <div class="container">
-          <div class="content">
-             <div class="row">
-              <div class="span12">
-                <%= render 'layouts/messages' %>
-                <div id="main_page">
-                  <div class="row">
-                    <div class="span4 offset4">
-                      <h2>Please log in!</h2>
-                      <p>
-                        <strong>To reset your password</strong>, simply leave the password blank below. You'll be sent
-                        an email with a coded link and instructions.
-                      </p>
-                      <form action="/login" method="post">
-                        <p><input type="text" name="email_address" placeholder="Email address"></p>
-                        <p><input type="password" name="password" placeholder="Password"></p>
-                        <p><input type="submit" value="Log in" class="btn btn-warning"></p>
-                      </form>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <footer>
-            </footer>
-          </div>
-        </div> <!--! end of .container -->
-      </div> <!--! end of #main -->
-      <div class="push"></div>
-    </section>
-    <footer class="footer">
-      <div class="container">
-        <div class="row">
-          <p class="muted credit span12 text-right" style="padding: 10px 0">
-            &copy; 2013 Bridge City Autobrokers, Inc. · PO Box 68484 · Portland, OR 97268
-          </p>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
+<div class="container">
+  <div class="row">
+    <div class="span4 offset4">
+      <%= image_tag 'megan.png' %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4 offset2">
+      <h2>Please log in!</h2>
+      <form class="login_form" action="/login" method="post">
+        <p>
+          <input type="text" name="email_address" placeholder="Email address">
+        </p>
+        <p>
+          <input id="password" name="password" type="password" placeholder="Password">
+          <button id="show_button" class="btn btn-warning">Show Password</button>
+        </p>
+        <p>
+          <input type="submit" value="Log in" class="btn btn-info">
+        </p>
+      </form>
+    </div>
+    <div class="span4">
+      <h3>Forgot your password?</h3>
+      <p>
+        <strong>To reset your password</strong>, simply leave the password field blank when you
+        log in. You'll receive an email shortly with an encoded link. Follow the link and you'll
+        be directed to a page where you may reset your password.
+      </p>
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag "application" %>
+
+<script type="text/javascript">
+  $(function() {
+    var show_button, password;
+    
+    show_button = $('#show_button');
+    password = $('#password');
+    
+    show_button.on('click', function() {
+      if ($(this).hasClass('active')) {
+        password.attr('type','password');
+        show_button.html("Show Password");
+        show_button.removeClass('btn-success');
+        show_button.removeClass('active');
+        show_button.addClass('btn-warning');
+    
+      } else {
+        password.attr('type','text');
+        show_button.html("Hide Password");
+        show_button.removeClass('btn-warning');
+        show_button.addClass('btn-success');
+        show_button.addClass('active');
+      }
+      return false;
+    });
+  });
+</script>
+
+<%= render 'layouts/messages' %>

@@ -8,8 +8,10 @@
 
 BridgeCity = new Backbone.Marionette.Application();
 
-BridgeCity.addRegions({
-  prologue: '#prologue_region',
-  content: '#content_region',
-  epilogue: '#epilogue_region'
+BridgeCity.Layout = MyLayout = Backbone.Marionette.Layout.extend({
+  regions: {
+    prologue: '#prologue_region',
+    content: '#content_region',
+    epilogue: '#epilogue_region'
+  }
 });
