@@ -3,7 +3,7 @@ class SiteController < ApplicationController
   
   # GET /
   def index
-    render 'site/index', :layout => false
+    render 'site/index'
   end
   
   # GET /uuids

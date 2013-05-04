@@ -4,6 +4,7 @@ BridgeCity.on("initialize:before", function(options){
 
 BridgeCity.on("initialize:after", function(options){
   console.log("--> Event: initialize:after");
+  if (Backbone.history) { Backbone.history.start({ pushState: true }); }
 });
 
 BridgeCity.on("start", function(options){

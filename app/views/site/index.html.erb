@@ -1,52 +1,5 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= csrf_meta_tags %>
-    
-    <title>Bridge City Automotive</title>
-    
-    <%= stylesheet_link_tag "application", :media => "all" %>
-  </head>
-  <body>
-    <div class="wrap">
-      <section id="prologue_region"></section>
-      <section id="content_region"></section>
-    </div>
-    <section id="epilogue_region"></section>
-    
-    <% render :partial => 'site/site_navigation' %>
-    
-    <% render :partial => 'site/site_footer' %>
-
-    <% render :partial => 'site/autos/detail' %>
-    <% render :partial => 'site/autos/form' %>
-    <% render :partial => 'site/autos/list' %>
-    <% render :partial => 'site/autos/new_button' %>
-    <% render :partial => 'site/autos/row' %>
-
-    <% render :partial => 'site/apps/detail' %>
-    <% render :partial => 'site/apps/form' %>
-    <% render :partial => 'site/apps/list' %>
-    <% render :partial => 'site/apps/row' %>
-
-    <% render :partial => 'site/users/detail' %>
-    <% render :partial => 'site/users/form' %>
-    <% render :partial => 'site/users/list' %>
-    <% render :partial => 'site/users/row' %>
-    <% render :partial => 'site/users/credit_application' %>
-    <% render :partial => 'site/users/phone_number' %>
-    
-    <%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "app/app" %>
-    
-    <script type="text/javascript">
-      $(function() {
-        BridgeCity.uuids = <%= load_uuids.to_s.html_safe %>;
-        BridgeCity.styles = <%= Automobile.styles.to_s.html_safe %>;
-        BridgeCity.statuses = <%= Automobile.statuses.to_s.html_safe %>;
-      });
-    </script>
-  </body>
-</html>
+<div class="wrap">
+  <section id="header_region"></section>
+  <section id="main_region"></section>
+</div>
+<section id="footer_region"></section>

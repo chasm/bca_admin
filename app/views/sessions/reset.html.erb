@@ -1,9 +1,8 @@
 <div class="container">
   <div class="row">
     <div class="span8 offset2">
-      <h1>Bridge City Automotive</h1>
       <h2>
-        Please set your password
+        Please reset your password
         <span class="pull-right">
           <button id="show_hide_passwords_btn" class="btn btn-warning" data-toggle="button">Show Passwords</button>
         </span>
@@ -56,7 +55,8 @@
   
     var user_password, user_password_confirmation, password_match,
       strength_0, strength_25, strength_50, strength_75, strength_100,
-      crack_time_display, password_strength_meter, show_hide_passwords_btn;
+      crack_time_display, password_strength_meter, show_hide_passwords_btn,
+      password_form;
   
     user_password = $('#user_password');
     user_password_confirmation = $('#user_password_confirmation');
@@ -69,6 +69,7 @@
     crack_time_display = $('#crack_time_display');
     password_strength_meter = $('.password-strength-meter');
     show_hide_passwords_btn = $('#show_hide_passwords_btn');
+    password_form = $('edit_user');
   
     show_hide_passwords_btn.on('click', function() {
       if ($(this).hasClass('active')) {
@@ -136,6 +137,13 @@
   
     user_password_confirmation.on('keyup', show_match);
     user_password_confirmation.on('blur', show_match);
+    
+    var validate_password = function() {
+      noty({text: "validating password", type: "information"});
+      return false;
+    };
+    
+    password_form.on('submit', validate_password);
   });
 </script>
 

@@ -1,16 +1,15 @@
 //= require jquery
-//= require jquery_ujs
-//= require underscore
-//= require json2
-//= require numeral
-//= require moment
-//= require backbone
-//= require backbone-relational
-//= require backbone.marionette
 //= require bootstrap-button
-//= require jquery.noty
-//= require_tree ./layouts
-//= require_tree ./themes
+//= require ./vendor/json2
+//= require ./vendor/numeral
+//= require ./vendor/moment
+//= require ./vendor/jquery.noty
+//= require ./vendor/underscore
+//= require ./vendor/backbone
+//= require ./vendor/marionette
+//= require ./vendor/relational
+//= require_tree ./vendor/layouts
+//= require_tree ./vendor/themes
 //= require_self
 
 // Typekit

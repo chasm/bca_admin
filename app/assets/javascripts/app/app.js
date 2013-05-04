@@ -1,17 +1,31 @@
 //= require_self
-//= require_tree ./models
-//= require_tree ./collections
-//= require_tree ./templates
+//
+//= require ./models/automobile
+//= require ./models/credit_application
+//= require ./models/login
+//= require ./models/user
+//= require ./models/initializer
+//
+//= require ./collections/automobiles
+//= require ./collections/credit_applications
+//= require ./collections/users
+//= require ./collections/initializer
+//
+//= require ./templates/templates
+//
 //= require_tree ./views
-//= require_tree ./router
+//
+//= require ./router/router
+//= require ./router/initializer
+//
 //= require ./start
 
 BridgeCity = new Backbone.Marionette.Application();
 
 BridgeCity.Layout = MyLayout = Backbone.Marionette.Layout.extend({
   regions: {
-    prologue: '#prologue_region',
-    content: '#content_region',
-    epilogue: '#epilogue_region'
+    prologue: '#header_region',
+    content: '#main_region',
+    epilogue: '#footer_region'
   }
 });

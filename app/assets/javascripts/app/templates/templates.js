@@ -1,4 +1,4 @@
-BridgeCity.templ_site_navigation = function(obj){
+BridgeCity.siteNavigationTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <a rel="router" href="/" title="To the dashboard." class="brand">Bridge City Automotive</a>\n  <ul class="nav">\n    <li><a rel="router" href="/autos" title="Manage the autos for sale.">Autos</a></li>\n    <li><a rel="router" href="/apps" title="Manage the credit applications.">Apps</a></li>\n    <li><a rel="router" href="/users" title="Manage the client data.">Users</a></li>\n  </ul>\n  <ul class="nav pull-right">\n    <li><a href="/logout">Log out</a></li>\n  </ul>\n';
@@ -6,7 +6,7 @@ __p+='\n  <a rel="router" href="/" title="To the dashboard." class="brand">Bridg
 return __p;
 }
 
-BridgeCity.templ_auto_detail = function(obj){
+BridgeCity.autoDetailTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <div class="row">\n    <div class="span12">\n      <h2 class="spaced-less">\n        '+
@@ -118,7 +118,7 @@ __p+='\n  <div class="row">\n    <div class="span12">\n      <h2 class="spaced-l
 return __p;
 }
 
-BridgeCity.templ_auto_form = function(obj){
+BridgeCity.autoFormTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <form id="form_for_autos" accept-charset="UTF-8" method="post" action="/automobiles/'+
@@ -358,7 +358,7 @@ __p+='">\n        </p>\n      </div>\n    </div>\n  </form>\n';
 return __p;
 }
 
-BridgeCity.templ_auto_list = function(obj){
+BridgeCity.autoListTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <table class="table table-bordered table-hover spaced">\n    <caption>'+
@@ -370,7 +370,7 @@ __p+='\n  <table class="table table-bordered table-hover spaced">\n    <caption>
 return __p;
 }
 
-BridgeCity.templ_auto_new_button = function(obj){
+BridgeCity.autoNewButtonTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <div class="pull-right">\n    <a id="auto_edit_link" rel="router" href="/autos/new"\n      class="btn btn-success btn-medium" style="margin-top:-8px">New</a>\n  </div>\n';
@@ -378,7 +378,7 @@ __p+='\n  <div class="pull-right">\n    <a id="auto_edit_link" rel="router" href
 return __p;
 }
 
-BridgeCity.templ_auto_row = function(obj){
+BridgeCity.autoRowTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <td><a href="/autos/'+
@@ -402,7 +402,7 @@ __p+='\n  <td><a href="/autos/'+
 return __p;
 }
 
-BridgeCity.templ_app_list = function(obj){
+BridgeCity.appListTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <table class="table table-bordered table-hover spaced">\n    <caption>'+
@@ -414,7 +414,7 @@ __p+='\n    </tbody>\n  </table>\n';
 return __p;
 }
 
-BridgeCity.templ_user_list = function(obj){
+BridgeCity.userListTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <table class="table table-bordered table-hover spaced">\n    <caption>'+
@@ -426,7 +426,7 @@ __p+='\n    </tbody>\n  </table>\n';
 return __p;
 }
 
-BridgeCity.templ_user_row = function(obj){
+BridgeCity.userRowTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n  <td><a href="/users/'+
@@ -446,7 +446,7 @@ __p+='\n  <td><a href="/users/'+
 return __p;
 }
 
-BridgeCity.templ_credit_application = function(obj){
+BridgeCity.creditApplicationTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+='\n    '+
@@ -458,7 +458,7 @@ __p+='\n    '+
 return __p;
 }
 
-BridgeCity.templ_phone_number = function(obj){
+BridgeCity.phoneNumberTemplate = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};
 with(obj||{}){
 __p+=' '+

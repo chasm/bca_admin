@@ -10,8 +10,8 @@ class SessionsController < ApplicationController
       @user = User.find_by_email_address(params[:email_address])
     
       if params[:password].blank?
-        UserMailer.reset_email(@user).deliver
-        redirect_to login_url, notice: "Your reset email has been sent!"
+        UserMailer.reset_email(@user, request).deliver
+        redirect_to login_url, notice: "Your password reset email has been sent!"
       else
         if @user && @user.authenticate(params[:password])
           session[:user_id] = @user.id
@@ -48,22 +48,32 @@ class SessionsController < ApplicationController
   # GET /reset/:code
   def reset
     @user = User.find_by_code(params[:code])
+    
+    if @user
+      render :reset, :layout => 'layouts/public'
+    else
+      redirect_to :login, :alert => "You're reset code has expired. Please create a new one."
+    end
   end
   
   # PUT /reset/:code
   def reset_password
     @user = User.find_by_code(params[:code])
     
-    if @user.update_attributes(params[:user])
-      @user.code = nil
-      @user.expires_at = nil
-      @user.save
+    if @user
+      if @user.update_attributes(params[:user])
+        @user.code = nil
+        @user.expires_at = nil
+        @user.save
       
-      session[:user_id] = @user.id
+        session[:user_id] = @user.id
       
-      redirect_to root_url, :notice => "You're password has been reset."
+        redirect_to root_url, :notice => "You're password has been reset."
+      else
+        render :text => @user.name
+      end
     else
-      render :text => @user.name
+      redirect_to :login, :alert => "You're reset code has expired. Please create a new one."
     end
   end
   
