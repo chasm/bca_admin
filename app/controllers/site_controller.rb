@@ -3,47 +3,7 @@ class SiteController < ApplicationController
   
   # GET /
   def index
-  end
-
-  # GET /autos
-  def autos
-    @available = Automobile.available.order('year, make, model, color')
-    @pending = Automobile.pending.order('year, make, model, color')
-    @sold = Automobile.sold.order('year, make, model, color')
-  end
-  
-  # def auto_new
-  #   @automobile = Automobile.new
-  # end
-  # 
-  # def auto_detail
-  #   @automobile = Automobile.find(params[:id])
-  # end
-  # 
-  # def auto_edit
-  #   @automobile = Automobile.find(params[:id])
-  #   
-  #   render :partial => 'auto_form', :layout => false
-  # end
-  # 
-  # def auto_update
-  #   @automobile = Automobile.find(params[:id])
-  #   @automobile.status = params[:status] if params[:status]
-  #   @automobile.save
-  #   
-  #   @available = Automobile.available.order('year, make, model, color')
-  #   @pending = Automobile.pending.order('year, make, model, color')
-  #   @sold = Automobile.sold.order('year, make, model, color')
-  #   
-  #   render :template => 'admin/automobiles', :layout => false
-  # end
-
-  # GET /apps
-  def apps
-  end
-
-  # GET /users
-  def users
+    render 'site/index', :layout => false
   end
   
   # GET /uuids
