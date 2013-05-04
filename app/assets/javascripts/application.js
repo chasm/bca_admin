@@ -1,5 +1,4 @@
 //= require jquery
-//= require bootstrap-button
 //= require ./vendor/json2
 //= require ./vendor/numeral
 //= require ./vendor/moment
