@@ -12,29 +12,8 @@
   <body>
     <%= yield %>
     
-    <% render :partial => 'site/site_navigation' %>
-    
-    <% render :partial => 'site/site_footer' %>
-
-    <% render :partial => 'site/autos/detail' %>
-    <% render :partial => 'site/autos/form' %>
-    <% render :partial => 'site/autos/list' %>
-    <% render :partial => 'site/autos/new_button' %>
-    <% render :partial => 'site/autos/row' %>
-
-    <% render :partial => 'site/apps/detail' %>
-    <% render :partial => 'site/apps/form' %>
-    <% render :partial => 'site/apps/list' %>
-    <% render :partial => 'site/apps/row' %>
-
-    <% render :partial => 'site/users/detail' %>
-    <% render :partial => 'site/users/form' %>
-    <% render :partial => 'site/users/list' %>
-    <% render :partial => 'site/users/row' %>
-    <% render :partial => 'site/users/credit_application' %>
-    <% render :partial => 'site/users/phone_number' %>
-    
     <%= javascript_include_tag "application" %>
+    
     <%= javascript_include_tag "backbone/app" %>
     
     <script type="text/javascript">

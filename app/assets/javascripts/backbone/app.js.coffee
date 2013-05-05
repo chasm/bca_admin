@@ -1,5 +1,6 @@
 //= require_tree ./config
 //= require_self
+//= require_tree ./entities
 //= require_tree ./apps
 //= require ./start
 
@@ -13,6 +14,7 @@
 		footerRegion: "#footer_region"
 	
 	App.addInitializer ->
+		App.module("HeaderApp").start()
 		App.module("FooterApp").start()
 	
 	App.on "initialize:after", ->

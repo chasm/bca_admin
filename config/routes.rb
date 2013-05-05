@@ -12,18 +12,18 @@ Bca::Application.routes.draw do
   
   get "autos" => "site#index", :as => :autos
   get "autos/new" => "site#index", :as => :autos_new
-  get "auto/:id" => "site#index", :as => :autos_detail
-  get "auto/:id/edit" => "site#index", :as => :autos_edit
+  get "auto/:id" => "site#index", :as => :auto_detail
+  get "auto/:id/edit" => "site#index", :as => :auto_edit
   
   get "apps" => "site#index", :as => :apps
   get "apps/new" => "site#index", :as => :apps_new
-  get "app/:id" => "site#index", :as => :apps_detail
-  get "app/:id/edit" => "site#index", :as => :apps_edit
+  get "app/:id" => "site#index", :as => :app_detail
+  get "app/:id/edit" => "site#index", :as => :app_edit
   
   get "users" => "site#index", :as => :users
   get "users/new" => "site#index", :as => :users_new
-  get "user/:id" => "site#index", :as => :users_detail
-  get "user/:id/edit" => "site#index", :as => :users_edit
+  get "user/:id" => "site#index", :as => :user_detail
+  get "user/:id/edit" => "site#index", :as => :user_edit
 
   scope "/api" do
     resources :automobiles, :except => [:new, :edit, :create] do

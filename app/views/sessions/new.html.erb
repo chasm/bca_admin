@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="span4 offset2">
+    <div class="span4">
+      <%= image_tag 'megan.png', :class => 'logo' %>
+    </div>
+    <div class="span5" style="margin-top: 100px">
       <h2>Please log in!</h2>
       <form class="login_form" action="/login" method="post">
         <p>
@@ -15,12 +18,12 @@
         </p>
       </form>
     </div>
-    <div class="span4">
-      <h2>Forgot your password?</h2>
+    <div class="span3" style="margin-top: 100px">
+      <h3>Lost password?</h3>
       <p>
-        <strong>To reset your password</strong>, simply leave the password field blank when you
+        No problem! To reset your password, simply leave the password field blank when you
         log in. You'll receive an email shortly with an encoded link. Follow the link and you'll
-        be directed to a page where you may reset your password.
+        be directed to a page where you may set a new password. It's easy.
       </p>
     </div>
   </div>

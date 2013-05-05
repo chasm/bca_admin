@@ -1,0 +1,14 @@
+<% console.log @ %>
+<header class="navbar navbar-fixed-top">
+  <nav class="navbar-inner">
+    <div class="container">
+      <div id="header">
+        <a rel="router" href="/" title="To the dashboard." class="brand">Bridge City Automotive</a>
+        <ul class="nav page-links"></ul>
+        <ul class="nav pull-right">
+          <li><a href="/logout">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

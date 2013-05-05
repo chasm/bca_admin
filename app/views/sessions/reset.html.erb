@@ -1,6 +1,9 @@
 <div class="container">
   <div class="row">
-    <div class="span8 offset2">
+    <div class="span4">
+      <%= image_tag 'bridges.png', :class => 'logo' %>
+    </div>
+    <div class="span8" style="margin-top: 100px">
       <h2>
         Please reset your password
         <span class="pull-right">
@@ -8,9 +11,7 @@
         </span>
       </h2>
     </div>
-  </div>
-  <div class="row">
-    <div class="span4 offset2">
+    <div class="span4">
       <%= form_for @user, :url => "/reset/#{params[:code]}" do |f| %>
         <p>
           <%= f.password_field :password, :placeholder => 'New password' %>
