@@ -1,0 +1,12 @@
+<td><%= @name %></td>
+<td><%= @email_address %></td>
+<td>
+  <% for phone in @phone_numbers: %>
+    <div class="phone_number">
+      <%= _.toPhoneNumber(phone.phone_number) %>
+      [ <%= phone.phone_type %> ]
+    </div>
+  <% end %>
+</td>
+<td><%- _.convertToYesNo(@is_admin) %></td>
+<td><%= moment(@created_at).format("D MMMM YYYY") %></td>

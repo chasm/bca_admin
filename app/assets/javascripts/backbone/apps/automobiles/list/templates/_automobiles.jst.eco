@@ -1,0 +1,13 @@
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Auto</th>
+      <th>Stock Number</th>
+      <th>Color</th>
+      <th>Style</th>
+      <th class="number-column">Price</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>

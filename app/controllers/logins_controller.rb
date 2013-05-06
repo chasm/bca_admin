@@ -1,4 +1,6 @@
 class LoginsController < ApplicationController
+  respond_to :json
+  
   # GET /users/:user_id/logins
   def index
     @user = User.find(params[:user_id])

@@ -1,4 +1,6 @@
 class PhoneNumbersController < ApplicationController
+  respond_to :json
+  
   before_filter :get_user
   
   # GET /users/:user_id/phone_numbers

@@ -1,9 +1,9 @@
 class CreditApplicationsController < ApplicationController
+  respond_to :json
+  
   # GET /credit_applications
   def index
     @credit_applications = CreditApplication.all
-
-    render json: @credit_applications
   end
 
   # GET /credit_applications/:id

@@ -1,0 +1,18 @@
+<table class="table table-bordered table-striped">
+  <caption>
+    <span class="pull-right">
+      <button id="new_user_button" class="btn btn-info">Add a User</button>
+    </span>
+    Site Users
+  </caption>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email Address</th>
+      <th>Phones</th>
+      <th>Admin?</th>
+      <th>Since</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
