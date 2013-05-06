@@ -1,30 +1,21 @@
 class PhoneNumbersController < ApplicationController
   respond_to :json
-  
-  before_filter :get_user
-  
+
+  before_filter :find_user
+  before_filter :find_phone_number, :except => [ :index ]
+
   # GET /users/:user_id/phone_numbers
   def index
     @phone_numbers = @user.phone_numbers
-
-    render json: @phone_numbers
   end
 
   # GET /users/:user_id/phone_numbers/:id
   def show
-    @phone_number = @user.phone_numbers.find(params[:id])
-    
-    if @phone_number
-      render json: @phone_number
-    else
-      head :not_found
-    end
+    head :not_found unless @phone_number
   end
 
   # PUT /users/:user_id/phone_numbers/:id
   def update
-    @phone_number = @user.phone_numbers.find(params[:id])
-
     if @phone_number
       if @phone_number.update_attributes(params[:phone_number])
         head :no_content
@@ -35,6 +26,7 @@ class PhoneNumbersController < ApplicationController
       @phone_number = PhoneNumber.new(params[:phone_number])
       @phone_number.id = params[:id]
       @user.phone_numbers << @phone_number
+      
       if @user.save
         render json: @phone_number
       else
@@ -45,15 +37,19 @@ class PhoneNumbersController < ApplicationController
 
   # DELETE /users/:user_id/phone_numbers/:id
   def destroy
-    @phone_number = @user.phone_numbers.find(params[:id])
-    @phone_number.destroy
-
-    head :no_content
+    delete_item @phone_number
   end
-  
+
   private
-  
-  def get_user
-    @user = User.find(params[:user_id])
+
+  def find_user
+    @user = User.find params[:user_id]
+    unless @user
+      head :not_found
+    end
+  end
+
+  def find_phone_number
+    @phone_number = @user.phone_numbers.find params[:id]
   end
 end

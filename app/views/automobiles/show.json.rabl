@@ -1,3 +1,3 @@
-collection @automobiles
+object @automobile
 
 extends "automobiles/_base"

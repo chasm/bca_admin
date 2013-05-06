@@ -1,6 +1,8 @@
 class AutomobilesController < ApplicationController
   respond_to :json
   
+  before_filter :find_automobile, :except => [ :index ]
+  
   # GET /automobiles
   def index
     @automobiles = Automobile.all
@@ -8,38 +10,37 @@ class AutomobilesController < ApplicationController
 
   # GET /automobiles/:id
   def show
-    @automobile = Automobile.find(params[:id])
-
-    render json: @automobile
+    head :not_found unless @automobile
   end
 
   # PUT /automobiles/:id
   def update
-    @automobile = Automobile.find(params[:id])
-    
     if @automobile
-      if @automobile.update_attributes(params[:automobile])
+      if @automobile.update_attributes params[:automobile]
         head :no_content
       else
-        render json: @automobile.errors, status: :unprocessable_entity 
+        render :errors, status: :unprocessable_entity 
       end
     else
-      @automobile = Automobile.new(params[:automobile])
+      @automobile = Automobile.new params[:automobile]
       @automobile.id = params[:id]
       
       if @automobile.save
-        render json: @automobile
+        render :show
       else
-        render json: @automobile.errors, status: :unprocessable_entity 
+        render :errors, status: :unprocessable_entity 
       end
     end
   end
 
   # DELETE /automobiles/:id
   def destroy
-    @automobile = Automobile.find(params[:id])
-    @automobile.destroy
-
-    head :no_content
+    delete_item @automobile
+  end
+  
+  private
+  
+  def find_automobile
+    @automobile = Automobile.find params[:id]
   end
 end

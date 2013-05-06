@@ -2,9 +2,9 @@
 
   Show.Controller =
 
-    showFooter: ->
-      footerView = @getFooterView()
-      App.footerRegion.show footerView
+    show: ->
+      showView= @getShowView()
+      App.footerRegion.show showView
 
-    getFooterView: ->
+    getShowView: ->
       new Show.Footer

@@ -8,7 +8,6 @@ gem 'rails', '3.2.13'
 gem 'mongo_mapper'
 gem 'bson_ext'
 gem 'bootstrap-sass-rails'
-gem 'compass'
 gem 'paperclip', '~> 3.0'
 gem 'thin'
 gem 'rabl'
@@ -27,6 +26,7 @@ group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'eco'
+  gem 'compass-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

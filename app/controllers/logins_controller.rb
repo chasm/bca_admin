@@ -1,26 +1,34 @@
 class LoginsController < ApplicationController
   respond_to :json
   
+  before_filter :find_user
+  before_filter :find_login, :except => [ :index ]
+  
   # GET /users/:user_id/logins
   def index
-    @user = User.find(params[:user_id])
     @logins = @user.logins
-    
-    render :json => @logins
   end
 
   # GET /users/:user_id/logins/:id
   def show
-    @login = Login.find_by_user_id_and_id params[:user_id], params[:id]
-    
-    render :json => @login
+    head :not_found unless @login
   end
 
   # DELETE /users/:user_id/logins/:id
   def destroy
-    @login = Login.find_by_user_id_and_id params[:user_id], params[:id]
-    @login.destroy
-    
-    head :no_content
+    delete_item @login
+  end
+  
+  private
+  
+  def find_user
+    @user = User.find params[:user_id]
+    unless @user
+      head :not_found
+    end
+  end
+  
+  def find_login
+    @login = @user.logins.find params[:id]
   end
 end

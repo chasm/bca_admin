@@ -1,3 +1,3 @@
-collection @credit_applications
+object @credit_application
 
 extends "credit_applications/_base"

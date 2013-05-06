@@ -1,13 +1,14 @@
-@BridgeCity.module "HeaderApp.List", (List, App, Backbone, Marionette, $, _) ->
+@Birchis.module "HeaderApp.List", (List, App, Backbone, Marionette, $, _) ->
 
   List.Controller =
 
-    listHeader: ->
+    list: ->
       links = App.request "header:entities"
+      window.links = links
 
-      headerView = @getHeaderView links
-      App.headerRegion.show headerView
+      listView = @getListView links
+      App.headerRegion.show listView
 
-    getHeaderView: (links) ->
+    getListView: (links) ->
       new List.Headers
         collection: links

@@ -30,9 +30,8 @@
     App.module("FooterApp").start()
 
   App.on "initialize:after", ->
-    if Backbone.history
-      Backbone.history.start({pushState: true})
-      @navigate(@rootRoute, {trigger: true}) if @getCurrentRoute() is ""
+    @startHistory()
+    @navigate(@rootRoute, trigger: true) unless @getCurrentRoute()
 
   App
 

@@ -164,4 +164,5 @@ CreditApplication.create :_id => SecureRandom.uuid,
       :monthly_pay_before_taxes => 3800.0
     },
   ],
-  :user => user
+  :user => user,
+  :automobile => autos[0]

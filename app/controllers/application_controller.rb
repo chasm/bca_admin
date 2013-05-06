@@ -18,4 +18,13 @@ class ApplicationController < ActionController::Base
   def authorize
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
+  
+  def delete_item(item)
+    if item
+      item.destroy
+      head :no_content
+    else
+      head :not_found
+    end
+  end
 end

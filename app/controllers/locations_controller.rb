@@ -1,30 +1,21 @@
 class LocationsController < ApplicationController
   respond_to :json
   
-  before_filter :get_credit_application
+  before_filter :find_credit_application
+  before_filter :find_location, :except => [ :index ]
   
   # GET /credit_applications/:credit_application_id/locations
   def index
     @locations = @credit_application.locations
-
-    render json: @locations
   end
 
   # GET /credit_applications/:credit_application_id/locations/:id
   def show
-    @location = @credit_application.locations.find(params[:id])
-    
-    if @location
-      render json: @location
-    else
-      head :not_found
-    end
+    head :not_found unless @location
   end
 
   # PUT /credit_applications/:credit_application_id/locations/:id
   def update
-    @location = @credit_application.locations.find(params[:id])
-
     if @location
       if @location.update_attributes(params[:location])
         head :no_content
@@ -35,6 +26,7 @@ class LocationsController < ApplicationController
       @location = Location.new(params[:location])
       @location.id = params[:id]
       @credit_application.locations << @location
+      
       if @credit_application.save
         render json: @location
       else
@@ -45,15 +37,19 @@ class LocationsController < ApplicationController
 
   # DELETE /credit_applications/:credit_application_id/locations/:id
   def destroy
-    @location = @credit_application.locations.find(params[:id])
-    @location.destroy
-
-    head :no_content
+    delete_item @location
   end
   
   private
   
-  def get_credit_application
-    @credit_application = CreditApplication.find(params[:credit_application_id])
+  def find_credit_application
+    @credit_application = CreditApplication.find params[:credit_application_id]
+    unless @credit_application
+      head :not_found
+    end
+  end
+
+  def find_location
+    @location = @credit_application.locations.find params[:id]
   end
 end
