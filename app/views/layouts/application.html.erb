@@ -6,6 +6,8 @@
     <%= csrf_meta_tags %>
     
     <title>Bridge City Automotive</title>
+
+    <%= include_gon %>
     
     <%= stylesheet_link_tag "application", :media => "all" %>
   </head>
@@ -13,15 +15,6 @@
     <%= yield %>
     
     <%= javascript_include_tag "application" %>
-    
     <%= javascript_include_tag "backbone/app" %>
-    
-    <script type="text/javascript">
-      $(function() {
-        BridgeCity.uuids = <%= load_uuids.to_s.html_safe %>;
-        BridgeCity.styles = <%= Automobile.styles.to_s.html_safe %>;
-        BridgeCity.statuses = <%= Automobile.statuses.to_s.html_safe %>;
-      });
-    </script>
   </body>
 </html>

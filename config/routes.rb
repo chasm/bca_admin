@@ -15,29 +15,29 @@ Bca::Application.routes.draw do
   get "auto/:id" => "site#index", :as => :auto_detail
   get "auto/:id/edit" => "site#index", :as => :auto_edit
   
-  get "apps" => "site#index", :as => :apps
-  get "apps/new" => "site#index", :as => :apps_new
-  get "app/:id" => "site#index", :as => :app_detail
-  get "app/:id/edit" => "site#index", :as => :app_edit
+  get "credit_apps" => "site#index", :as => :credit_apps
+  get "credit_apps/new" => "site#index", :as => :credit_apps_new
+  get "credit_app/:id" => "site#index", :as => :credit_app_detail
+  get "credit_app/:id/edit" => "site#index", :as => :credit_app_edit
   
-  get "users" => "site#index", :as => :users
-  get "users/new" => "site#index", :as => :users_new
-  get "user/:id" => "site#index", :as => :user_detail
-  get "user/:id/edit" => "site#index", :as => :user_edit
+  get "users" => "site#index", :as => :clients
+  get "users/new" => "site#index", :as => :clients_new
+  get "user/:id" => "site#index", :as => :client_detail
+  get "user/:id/edit" => "site#index", :as => :client_edit
 
   scope "/api" do
-    resources :automobiles, :except => [:new, :edit, :create] do
-      resources :credit_applications, :except => [:new, :edit, :create]
+    resources :automobiles, :except => [:new, :edit, :create], defaults: {format: :json} do
+      resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json}
     end
 
-    resources :credit_applications, :except => [:new, :edit, :create] do
-      resources :employers, :except => [ :new, :edit ]
-      resources :locations, :except => [ :new, :edit ]
+    resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json} do
+      resources :employers, :except => [ :new, :edit ], defaults: {format: :json}
+      resources :locations, :except => [ :new, :edit ], defaults: {format: :json}
     end
   
-    resources :users, :except => [ :new, :edit ] do
-      resources :phone_numbers, :except => [ :new, :edit ]
-      resources :logins, :only => [ :index, :show, :destroy ]
+    resources :users, :except => [ :new, :edit ], defaults: {format: :json} do
+      resources :phone_numbers, :except => [ :new, :edit ], defaults: {format: :json}
+      resources :logins, :only => [ :index, :show, :destroy ], defaults: {format: :json}
     end
   end
 

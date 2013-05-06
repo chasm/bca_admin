@@ -3,7 +3,9 @@ class SiteController < ApplicationController
   
   # GET /
   def index
-    render 'site/index'
+    gon.rabl
+    @user = current_user
+    gon.rabl :template => "app/views/users/show.json.rabl", :as => "current_user"
   end
   
   # GET /uuids
@@ -11,9 +13,7 @@ class SiteController < ApplicationController
   def uuids
     count = params[:count].to_i || 1
     
-    uuids = (0...count).to_a.map do
-      SecureRandom.uuid
-    end
+    uuids = get_uuids count
     
     render :json => uuids
   end

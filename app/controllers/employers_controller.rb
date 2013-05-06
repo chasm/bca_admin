@@ -1,4 +1,6 @@
 class EmployersController < ApplicationController
+  respond_to :json
+  
   before_filter :get_credit_application
   
   # GET /credit_applications/:credit_application_id/employers

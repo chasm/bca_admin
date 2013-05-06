@@ -11,6 +11,10 @@ gem 'bootstrap-sass-rails'
 gem 'compass'
 gem 'paperclip', '~> 3.0'
 gem 'thin'
+gem 'rabl'
+gem 'oj'
+gem 'gon'
+gem 'js-routes'
 
 group :development do
   gem "better_errors"

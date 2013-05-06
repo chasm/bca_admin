@@ -1,9 +1,9 @@
 class AutomobilesController < ApplicationController
+  respond_to :json
+  
   # GET /automobiles
   def index
     @automobiles = Automobile.all
-
-    render json: @automobiles
   end
 
   # GET /automobiles/:id
