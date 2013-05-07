@@ -18,6 +18,15 @@ gem 'js-routes'
 group :development do
   gem "better_errors"
   gem "binding_of_caller"
+  # gem "poltergeist"
+  # gem "meta_request"
+end
+
+group :test do
+  gem "rspec-rails"
+  gem "capybara"
+  gem "launchy"
+  gem "database_cleaner"
 end
 
 # Gems used only for assets and not required

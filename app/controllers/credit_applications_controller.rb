@@ -1,11 +1,16 @@
-class CreditApplicationsController < ApplicationController
+class CreditApplicationsController < RestController
   respond_to :json
-  
+
   before_filter :find_credit_application, :except => [ :index ]
-  
+  before_filter :find_automobile
+
   # GET /credit_applications
   def index
-    @credit_applications = CreditApplication.all
+    if @automobile
+      @credit_applications = @automobile.credit_applications
+    else
+      @credit_applications = CreditApplication.all
+    end
   end
 
   # GET /credit_applications/:id
@@ -24,7 +29,7 @@ class CreditApplicationsController < ApplicationController
     else
       @credit_application = CreditApplication.new params[:credit_application]
       @credit_application.id = params[:id]
-      
+    
       if @credit_application.save
         render :show
       else
@@ -37,10 +42,15 @@ class CreditApplicationsController < ApplicationController
   def destroy
     delete_item @credit_application
   end
-  
+
   private
-  
+
+  def find_automobile
+    @automobile = Automobile.find params[:automobile_id]
+  end
+
   def find_credit_application
     @credit_application = CreditApplication.find params[:id]
   end
+  
 end

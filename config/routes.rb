@@ -31,12 +31,12 @@ Bca::Application.routes.draw do
     end
 
     resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json} do
-      resources :employers, :except => [ :new, :edit ], defaults: {format: :json}
-      resources :locations, :except => [ :new, :edit ], defaults: {format: :json}
+      resources :employers, :except => [ :new, :edit, :create ], defaults: {format: :json}
+      resources :locations, :except => [ :new, :edit, :create ], defaults: {format: :json}
     end
   
-    resources :users, :except => [ :new, :edit ], defaults: {format: :json} do
-      resources :phone_numbers, :except => [ :new, :edit ], defaults: {format: :json}
+    resources :users, :except => [ :new, :edit, :create ], defaults: {format: :json} do
+      resources :phone_numbers, :except => [ :new, :edit, :create ], defaults: {format: :json}
       resources :logins, :only => [ :index, :show, :destroy ], defaults: {format: :json}
     end
   end

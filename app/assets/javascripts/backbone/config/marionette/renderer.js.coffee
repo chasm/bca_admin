@@ -10,4 +10,4 @@ do (Marionette) ->
 
     getTemplate: (template) ->
       for path in [template, template.split("/").insertAt(-1, "templates").join("/")]
-      return JST[@root + path] if JST[@root + path]
+        return JST[@root + path] if JST[@root + path]
