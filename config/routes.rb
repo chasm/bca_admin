@@ -27,7 +27,10 @@ Bca::Application.routes.draw do
 
   scope "/api" do
     resources :automobiles, :except => [:new, :edit, :create], defaults: {format: :json} do
-      resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json}
+      resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json} do
+        resources :employers, :except => [ :new, :edit, :create ], defaults: {format: :json}
+        resources :locations, :except => [ :new, :edit, :create ], defaults: {format: :json}
+      end
     end
 
     resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json} do

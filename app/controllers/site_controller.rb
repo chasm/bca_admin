@@ -3,18 +3,15 @@ class SiteController < ApplicationController
   
   # GET /
   def index
-    gon.rabl
     @user = current_user
     gon.rabl :template => "app/views/users/show.json.rabl", :as => "current_user"
+    
+    gon.rabl
   end
   
   # GET /uuids
   # GET /uuids/:count
   def uuids
-    count = params[:count].to_i || 1
-    
-    uuids = get_uuids count
-    
-    render :json => uuids
+    render :json => (get_uuids( if params[:count] then params[:count].to_i else 1 end ))
   end
 end

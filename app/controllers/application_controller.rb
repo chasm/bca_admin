@@ -19,12 +19,25 @@ class ApplicationController < ActionController::Base
     redirect_to login_url, alert: "Not authorized" if current_user.nil?
   end
   
-  def delete_item(item)
-    if item
-      item.destroy
-      head :no_content
-    else
-      head :not_found
-    end
+  def get_ancestors_and_self
+    Rails.application.routes.routes.to_a.select do |r|
+      # Find the routes for this controller/action pair
+      r.defaults[:action] == params[:action] and r.defaults[:controller] == params[:controller]
+    end.map do |r|
+      # Split them to arrays of path segments
+      r.path.spec.to_s.chomp("(.:format)").split("/")
+    end.inject do |m,r|
+      # Select the array with the most segments
+      m.length > r.length ? m : r
+    end.select do |s| 
+      # Select only those segments that end with _id
+      s.ends_with?("_id")
+    end.map do |s|
+      # Remove the : from the front
+      s[1..-1]
+    end.select do |s|
+      # Choose only those keys in the params hash
+      params.keys.include?(s)
+    end << "#{params[:controller].singularize}_id" # Add the current controller
   end
 end

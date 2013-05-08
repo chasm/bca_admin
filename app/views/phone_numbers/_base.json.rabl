@@ -1,5 +1,5 @@
-attributes :id, :phone_type, :phone_number, :extension, :user
+attributes :id, :phone_type, :phone_number, :extension
     
 child @user do
-  attributes :id
+  attributes :id, :name
 end
