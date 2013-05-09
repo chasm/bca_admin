@@ -11,6 +11,7 @@ class SessionsController < ApplicationController
     
       if params[:password].blank?
         UserMailer.reset_email(@user, request).deliver
+        
         redirect_to login_url, notice: "Your password reset email has been sent!"
       else
         if @user && @user.authenticate(params[:password])

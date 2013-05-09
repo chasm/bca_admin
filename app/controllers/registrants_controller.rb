@@ -1,0 +1,1 @@
+class RegistrantsController < RestController; end

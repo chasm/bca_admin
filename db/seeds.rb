@@ -77,6 +77,46 @@ autos = Automobile.create([
   }
 ])
 
+registrants = Registrant.create([
+  {
+    _id: SecureRandom.uuid,
+    email_address: "dotty@munat.com",
+    code: SecureRandom.urlsafe_base64,
+    expires_at: (Date.today + 1),
+    automobile: autos[0]
+  },
+  {
+    _id: SecureRandom.uuid,
+    email_address: "dorla@munat.com",
+    code: SecureRandom.urlsafe_base64,
+    expires_at: (Date.today + 1),
+    automobile: autos[0]
+  },
+  {
+    _id: SecureRandom.uuid,
+    email_address: "darlene@munat.com",
+    code: SecureRandom.urlsafe_base64,
+    expires_at: (Date.today + 1),
+    automobile: autos[1]
+  },
+  {
+    _id: SecureRandom.uuid,
+    email_address: "debbie@munat.com",
+    code: SecureRandom.urlsafe_base64,
+    expires_at: (Date.today + 1),
+    automobile: autos[1]
+  },
+  {
+    _id: SecureRandom.uuid,
+    email_address: "denise@munat.com",
+    code: SecureRandom.urlsafe_base64,
+    expires_at: (Date.today + 1),
+    automobile: autos[2]
+  }
+])
+
+autos.each {|a| a.save }
+
 user = User.create :_id => SecureRandom.uuid,
   :name_first            => 'Charles',
   :name_mi               => 'F.',

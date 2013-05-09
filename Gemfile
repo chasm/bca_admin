@@ -15,14 +15,12 @@ gem 'oj'
 gem 'gon'
 gem 'js-routes'
 
-group :development do
+group :development, :test do
   gem "better_errors"
   gem "binding_of_caller"
-  # gem "poltergeist"
-  # gem "meta_request"
-end
-
-group :test do
+  gem "meta_request"
+  gem "selenium-webdriver"
+  gem "pry"
   gem "rspec-rails"
   gem "capybara"
   gem "launchy"

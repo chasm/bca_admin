@@ -42,6 +42,8 @@ Bca::Application.routes.draw do
       resources :phone_numbers, :except => [ :new, :edit, :create ], defaults: {format: :json}
       resources :logins, :only => [ :index, :show, :destroy ], defaults: {format: :json}
     end
+
+    resources :registrants, :except => [:new, :edit, :create], defaults: {format: :json}
   end
 
   root :to => 'site#index'

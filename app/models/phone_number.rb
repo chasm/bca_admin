@@ -1,18 +1,18 @@
 class PhoneNumber
   include MongoMapper::EmbeddedDocument
   
-  attr_accessible :_id, :extension, :phone_number, :phone_type, :user
-  
-  key :_id, String
-  key :phone_number, String
-  key :extension, String
-  key :phone_type, String
-  
-  before_validation :downcase_phone_type
-  
   def self.phone_types
     ['mobile', 'work', 'home', 'fax', 'voip', 'pager']
   end
+  
+  attr_accessible :_id, :extension, :phone_number, :phone_type, :user
+  
+  key :_id, String
+  key :phone_number, String, :required => true
+  key :extension, String
+  key :phone_type, String, :required => true, :in => self.phone_types
+  
+  before_validation :downcase_phone_type
   
   validates :phone_type, :inclusion => {
     :in => phone_types,
