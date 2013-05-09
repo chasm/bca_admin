@@ -1,14 +1,14 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery
   
-  private
-  
   def get_uuids(count)
     (0...count).to_a.map do
       SecureRandom.uuid
     end
   end
   helper_method :get_uuids
+  
+  private
 
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
