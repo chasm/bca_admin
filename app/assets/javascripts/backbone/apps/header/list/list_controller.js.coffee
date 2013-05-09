@@ -4,7 +4,6 @@
 
     list: ->
       links = App.request "header:entities"
-      window.links = links
 
       listView = @getListView links
       App.headerRegion.show listView
