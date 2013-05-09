@@ -1,5 +1,6 @@
 class CreditApplication
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
   def self.statuses
     ['new', 'pending', 'approved', 'denied']
@@ -9,19 +10,17 @@ class CreditApplication
     :loan_amount, :sales_person, :social_security_number, :status,
     :automobile, :user, :employers, :locations, :automobile_id
   
-  key :_id, String
-  key :drivers_license_number, String
-  key :date_of_birth, Date
-  key :social_security_number, String
-  key :loan_amount, Float
-  key :sales_person, String
-  key :authorized, Boolean
-  key :status, String, :in => self.statuses, :required => true, :default => self.statuses.first
-  
-  timestamps!
+  field :_id, String
+  field :drivers_license_number, String
+  field :date_of_birth, Date
+  field :social_security_number, String
+  field :loan_amount, Float
+  field :sales_person, String
+  field :authorized, Boolean
+  field :status, String, :in => self.statuses, :required => true, :default => self.statuses.first
     
-  belongs_to :automobile
-  belongs_to :user
-  many :employers
-  many :locations
+  # belongs_to :automobile
+  # belongs_to :user
+  # many :employers
+  # many :locations
 end

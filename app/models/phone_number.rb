@@ -1,5 +1,5 @@
 class PhoneNumber
-  include MongoMapper::EmbeddedDocument
+  include Mongoid::EmbeddedDocument
   
   def self.phone_types
     ['mobile', 'work', 'home', 'fax', 'voip', 'pager']
@@ -7,10 +7,10 @@ class PhoneNumber
   
   attr_accessible :_id, :extension, :phone_number, :phone_type, :user
   
-  key :_id, String
-  key :phone_number, String, :required => true
-  key :extension, String
-  key :phone_type, String, :required => true, :in => self.phone_types
+  field :_id, String
+  field :phone_number, String, :required => true
+  field :extension, String
+  field :phone_type, String, :required => true, :in => self.phone_types
   
   before_validation :downcase_phone_type
   

@@ -1,7 +1,7 @@
 require 'paperclip'
 
 class Photo
-  include MongoMapper::EmbeddedDocument
+  include Mongoid::EmbeddedDocument
   include Paperclip::Glue
   
   attr_accessible :_id, :automobile, :photo
@@ -11,6 +11,6 @@ class Photo
     :thumb => "240x180>"
   }
   
-  key :_id, String
-  key :photo_file_name, String
+  field :_id, String
+  field :photo_file_name, String
 end

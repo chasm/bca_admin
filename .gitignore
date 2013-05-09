@@ -7,8 +7,6 @@ capybara-*.html
 /vendor/bundle
 /log/*
 /tmp/*
-/db/*.sqlite3
-/config/mongo.yml
 /public/system/*
 /coverage/
 /spec/tmp/*
@@ -16,3 +14,4 @@ capybara-*.html
 rerun.txt
 pickle-email-*.html
 .DS_Store
+/config/mongoid.yml

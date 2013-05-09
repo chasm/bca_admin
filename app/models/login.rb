@@ -1,15 +1,15 @@
 class Login
-  include MongoMapper::Document
+  include Mongoid::Document
   
   attr_accessible :session, :ip_address, :user_agent, :referer, :logged_in_at, :logged_out_at, :user
 
-  key :session, String
-  key :ip_address, String
-  key :user_agent, String
-  key :referer, String
-  key :logged_in_at, Time
-  key :logged_out_at, Time
+  field :session, String
+  field :ip_address, String
+  field :user_agent, String
+  field :referer, String
+  field :logged_in_at, Time
+  field :logged_out_at, Time
   
-  belongs_to :user
+  # belongs_to :user
 
 end

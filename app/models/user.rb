@@ -1,35 +1,34 @@
 require 'bcrypt'
 
 class User
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
   attr_accessible :_id, :code, :email_address, :expires_at, :is_admin, :password, :password_confirmation,
     :name_first, :name_last, :name_mi, :credit_applications, :phone_numbers
     
   attr_accessor :password, :password_confirmation
   
-  key :_id, String
-  key :name_first, String
-  key :name_mi, String
-  key :name_last, String
-  key :is_admin, Boolean
+  field :_id, String
+  field :name_first, String
+  field :name_mi, String
+  field :name_last, String
+  field :is_admin, Boolean
   
-  key :email_address, String
+  field :email_address, String
   
-  key :hash, String
-  key :salt, String
+  field :hashed, String
+  field :salt, String
   
-  key :code, String
-  key :expires_at, DateTime
-  
-  timestamps!
+  field :code, String
+  field :expires_at, DateTime
   
   before_validation :downcase_email
   before_save :encrypt_password
   
-  many :credit_applications
-  many :phone_numbers
-  many :logins
+  # many :credit_applications
+  # many :phone_numbers
+  # many :logins
 
   validates :email_address, :name_first, :name_last, :presence => true
   
@@ -42,7 +41,7 @@ class User
   
   def self.authenticate(email, password)
     user = find_by_email(email)
-    if user && user.hash == BCrypt::Engine.hash_secret(password, user.salt)
+    if user && user.hashed == BCrypt::Engine.hash_secret(password, user.salt)
       user
     else
       nil
@@ -50,7 +49,7 @@ class User
   end
   
   def authenticate(password)
-    if self.hash == BCrypt::Engine.hash_secret(password, self.salt)
+    if self.hashed == BCrypt::Engine.hash_secret(password, self.salt)
       self
     else
       nil
@@ -66,7 +65,7 @@ class User
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
-      self.hash = BCrypt::Engine.hash_secret(password, self.salt)
+      self.hashed = BCrypt::Engine.hash_secret(password, self.salt)
       self.password = nil
     end
   end

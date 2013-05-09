@@ -1,5 +1,6 @@
 class Automobile
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
   def self.styles
     [
@@ -32,64 +33,58 @@ class Automobile
     :special_features, :status, :stock_number, :style, :telescoping_steering,
     :tilt_steering, :tow_package, :year, :credit_applications
   
-  key :_id, String, :required => true
-  key :stock_number, String, :required => true, :unique => true
-  key :make, String, :required => true
-  key :model, String, :required => true
-  key :year, Integer, :required => true, :numeric => true
-  key :color, String, :required => true
-  key :style, String, :required => true, :in => self.styles
-  key :price, Integer, :required => true, :numeric => true
-  key :doors, Integer
-  key :displacement, Float
-  key :cylinders, Integer
-  key :mileage, Float
-  key :carfax, Boolean
-  key :low_miles, Boolean
-  key :fully_serviced, Boolean
-  key :tilt_steering, Boolean
-  key :telescoping_steering, Boolean
-  key :power_steering, Boolean
-  key :power_windows, Boolean
-  key :power_locks, Boolean
-  key :power_mirrors, Boolean
-  key :power_brakes, Boolean
-  key :antilock_brakes, Boolean
-  key :all_wheel_drive, Boolean
-  key :alloy_wheels, Boolean
-  key :automatic, Boolean
-  key :cruise_control, Boolean
-  key :air_conditioning, Boolean
-  key :auto_climate_control, Boolean
-  key :dual_zone, Boolean
-  key :am, Boolean
-  key :fm, Boolean
-  key :cd, Boolean
-  key :mp3, Boolean
-  key :leather, Boolean
-  key :heated_seats_front, Boolean
-  key :heated_seats_rear, Boolean
-  key :roof_rack, Boolean
-  key :running_boards, Boolean
-  key :tow_package, Boolean
-  key :recent_brakes, Boolean
-  key :recent_tires, Boolean
-  key :recent_paint, Boolean
-  key :recent_timing_belt, Boolean
-  key :special_features, String
-  key :nice_to_have, String
-  key :extras, String
-  key :status, String, :in => self.statuses, :required => true, :default => self.statuses.first
+  field :_id, String, :required => true
+  field :stock_number, String, :required => true, :unique => true
+  field :make, String, :required => true
+  field :model, String, :required => true
+  field :year, Integer, :required => true, :numeric => true
+  field :color, String, :required => true
+  field :style, String, :required => true, :in => self.styles
+  field :price, Integer, :required => true, :numeric => true
+  field :doors, Integer
+  field :displacement, Float
+  field :cylinders, Integer
+  field :mileage, Float
+  field :carfax, Boolean
+  field :low_miles, Boolean
+  field :fully_serviced, Boolean
+  field :tilt_steering, Boolean
+  field :telescoping_steering, Boolean
+  field :power_steering, Boolean
+  field :power_windows, Boolean
+  field :power_locks, Boolean
+  field :power_mirrors, Boolean
+  field :power_brakes, Boolean
+  field :antilock_brakes, Boolean
+  field :all_wheel_drive, Boolean
+  field :alloy_wheels, Boolean
+  field :automatic, Boolean
+  field :cruise_control, Boolean
+  field :air_conditioning, Boolean
+  field :auto_climate_control, Boolean
+  field :dual_zone, Boolean
+  field :am, Boolean
+  field :fm, Boolean
+  field :cd, Boolean
+  field :mp3, Boolean
+  field :leather, Boolean
+  field :heated_seats_front, Boolean
+  field :heated_seats_rear, Boolean
+  field :roof_rack, Boolean
+  field :running_boards, Boolean
+  field :tow_package, Boolean
+  field :recent_brakes, Boolean
+  field :recent_tires, Boolean
+  field :recent_paint, Boolean
+  field :recent_timing_belt, Boolean
+  field :special_features, String
+  field :nice_to_have, String
+  field :extras, String
+  field :status, String, :in => self.statuses, :required => true, :default => self.statuses.first
   
-  timestamps!
-  
-  many :photos
-  many :credit_applications
-  many :registrants
-  
-  scope :available, where(:status => 'available')
-  scope :pending, where(:status => 'pending')
-  scope :sold, where(:status => 'sold')
+  # many :photos
+  # many :credit_applications
+  # many :registrants
   
   def name
     [self.year, self.make, self.model].compact.join(" ")

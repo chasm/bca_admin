@@ -1,16 +1,15 @@
 class Registrant
-  include MongoMapper::Document
+  include Mongoid::Document
+  include Mongoid::Timestamps
   
   attr_accessible :_id, :code, :email_address, :expires_at
   
-  key :_id, String
-  key :email_address, String
-  key :code, String
-  key :expires_at, DateTime
+  field :_id, String
+  field :email_address, String
+  field :code, String
+  field :expires_at, DateTime
   
-  timestamps!
-  
-  belongs_to :automobile
+  # belongs_to :automobile
   
   before_create :add_code
   
