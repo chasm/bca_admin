@@ -2,16 +2,19 @@ class Registrant
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  attr_accessible :_id, :code, :email_address, :expires_at
+  belongs_to :automobile
   
-  field :_id, String
-  field :email_address, String
-  field :code, String
-  field :expires_at, DateTime
+  attr_accessible :_id, :code, :email, :expires_at, :automobile
   
-  # belongs_to :automobile
+  field :_id, type: String
+  field :email, type: String
+  field :code, type: String
+  field :expires_at, type: DateTime
   
   before_create :add_code
+  
+  validates_presence_of :email
+  validates_uniqueness_of :email
   
   private
   

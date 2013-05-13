@@ -7,6 +7,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
+require 'factory_girl'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -22,6 +23,8 @@ RSpec.configure do |config|
   config.after(:each) do
     DatabaseCleaner.clean
   end
+
+  config.include FactoryGirl::Syntax::Methods
 
   config.color_enabled = true
   config.tty = true

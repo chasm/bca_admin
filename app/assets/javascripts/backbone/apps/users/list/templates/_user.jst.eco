@@ -1,5 +1,5 @@
 <td><%= @name %></td>
-<td><%= @email_address %></td>
+<td><%= @email %></td>
 <td>
   <% for phone in @phone_numbers: %>
     <div class="phone_number">

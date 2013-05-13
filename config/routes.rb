@@ -7,9 +7,6 @@ Bca::Application.routes.draw do
   get "reset/:code" => "sessions#reset", :as => :password_form
   put "reset/:code" => "sessions#reset_password"
   
-  get "uuids" => "site#uuids", :as => :uuid
-  get "uuids/:count" => "site#uuids", :as => :uuids
-  
   get "autos" => "site#index", :as => :autos
   get "autos/new" => "site#index", :as => :autos_new
   get "auto/:id" => "site#index", :as => :auto_detail
@@ -26,6 +23,9 @@ Bca::Application.routes.draw do
   get "user/:id/edit" => "site#index", :as => :client_edit
 
   scope "/api" do
+    get "uuids" => "site#uuids", :as => :uuid
+    get "uuids/:count" => "site#uuids", :as => :uuids
+
     resources :automobiles, :except => [:new, :edit, :create], defaults: {format: :json} do
       resources :credit_applications, :except => [:new, :edit, :create], defaults: {format: :json} do
         resources :employers, :except => [ :new, :edit, :create ], defaults: {format: :json}

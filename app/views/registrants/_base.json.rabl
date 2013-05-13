@@ -1,1 +1,1 @@
-attributes :id, :email_address, :code, :expires_at
+attributes :id, :email, :code, :expires_at

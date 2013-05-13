@@ -1,19 +1,25 @@
 class RestController < ApplicationController
   respond_to :json
 
-  before_filter :authorize
+  # before_filter :authorize
   before_filter :pack_em_up
   
-  # GET /automobiles
+  # GET /items
+  # GET /parents/:parent_id/items
+  # GET /grandparents/:grandparent_id/parents/:parent_id/items
   def index
   end
 
-  # GET /automobiles/:id
+  # GET /items/:id
+  # GET /parents/:parent_id/items/:id
+  # GET /grandparents/:grandparent_id/parents/:parent_id/items/:id
   def show
     head :not_found unless instance_variable_get("@#{@name}")
   end
 
-  # PUT /automobiles/:id
+  # PUT /items/:id
+  # PUT /parents/:parent_id/items/:id
+  # PUT /grandparents/:grandparent_id/parents/:parent_id/items/:id
   def update
     item = instance_variable_get("@#{@name}")
     symb = params[:controller].singularize.to_sym
@@ -23,7 +29,7 @@ class RestController < ApplicationController
       if item.update_attributes params[symb]
         head :no_content
       else
-        render :errors, status: :unprocessable_entity 
+        render :errors, status: :unprocessable_entity # What status code should this return?
       end
     else
       # This is a create request
@@ -33,12 +39,14 @@ class RestController < ApplicationController
       if item.save
         render :show
       else
-        render :errors, status: :unprocessable_entity 
+        render :errors, status: :unprocessable_entity # What status code should this return?
       end
     end
   end
 
-  # DELETE /automobiles/:id
+  # DELETE /items/:id
+  # DELETE /parents/:parent_id/items/:id
+  # DELETE /grandparents/:grandparent_id/parents/:parent_id/items/:id
   def destroy
     if item = instance_variable_get("@#{@name}")
       item.destroy
@@ -67,12 +75,16 @@ class RestController < ApplicationController
       
       # If we have an id, find the object and set an instance variable
       # Else, if it's not an array (of associations), find all
-      if uuid
-        out = out.find(uuid)
-        instance_variable_set("@#{@name}", out)
-      else
-        out = out.all if out.class != Array
-        instance_variable_set("@#{@name.pluralize}", out)
+      begin
+        if uuid
+          out = out.find(uuid)
+          instance_variable_set("@#{@name}", out)
+        else
+          out = out.all.to_a if out.class != Array
+          instance_variable_set("@#{@name.pluralize}", out)
+        end
+      rescue
+        head :not_found unless params[:action] == "update"
       end
     end
   end

@@ -7,7 +7,7 @@ class UserMailer < ActionMailer::Base
     @user.expires_at = DateTime.now + 1
     @user.save
     @url = "#{request.protocol}#{request.host_with_port}/reset/#{@user.code}"
-    mail :to => @user.email_address,
+    mail :to => @user.email,
       :subject => "Reset your credentials for Bridge City Automotive"
   end
 end

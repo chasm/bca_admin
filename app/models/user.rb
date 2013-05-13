@@ -4,52 +4,58 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
   
-  attr_accessible :_id, :code, :email_address, :expires_at, :is_admin, :password, :password_confirmation,
-    :name_first, :name_last, :name_mi, :credit_applications, :phone_numbers
+  embeds_many :phone_numbers
+  
+  has_many :credit_applications
+  has_many :logins
+  
+  attr_accessible :_id, :code, :email, :expires_at, :is_admin, :password, :password_confirmation,
+    :name_first, :name_last, :name_mi, :credit_applications, :phone_numbers, :logins
     
   attr_accessor :password, :password_confirmation
   
-  field :_id, String
-  field :name_first, String
-  field :name_mi, String
-  field :name_last, String
-  field :is_admin, Boolean
+  field :_id, type: String
+  field :name_first, type: String
+  field :name_mi, type: String
+  field :name_last, type: String
+  field :is_admin, type: Boolean, default: false
   
-  field :email_address, String
+  field :email, type: String
   
-  field :hashed, String
-  field :salt, String
+  field :fish, type: String
+  field :salt, type: String
   
-  field :code, String
-  field :expires_at, DateTime
+  field :code, type: String
+  field :expires_at, type: DateTime
   
   before_validation :downcase_email
   before_save :encrypt_password
-  
-  # many :credit_applications
-  # many :phone_numbers
-  # many :logins
 
-  validates :email_address, :name_first, :name_last, :presence => true
-  
-  validates :email_address, :uniqueness => { :case_sensitive => false }
-  validates :password, :password_confirmation, :confirmation => true
+  validates :name_first, presence: true
+  validates :name_last, presence: true
+  validates :email, presence: true, uniqueness: true
+  validates :password, confirmation: true, length: { minimum: 8 }
+  validates :phone_numbers, associated: true
   
   def name
     [self.name_first, self.name_mi, self.name_last].compact.join(' ')
   end
   
   def self.authenticate(email, password)
-    user = find_by_email(email)
-    if user && user.hashed == BCrypt::Engine.hash_secret(password, user.salt)
-      user
-    else
+    begin
+      user = find({email: email})
+      if user.fish == BCrypt::Engine.hash_secret(password, user.salt)
+        user
+      else
+        nil
+      end
+    rescue
       nil
     end
   end
   
   def authenticate(password)
-    if self.hashed == BCrypt::Engine.hash_secret(password, self.salt)
+    if self.fish == BCrypt::Engine.hash_secret(password, self.salt)
       self
     else
       nil
@@ -59,14 +65,13 @@ class User
   private
   
   def downcase_email
-    self.email_address.downcase!
+    self.email.downcase! if self.email
   end
   
   def encrypt_password
     if password.present?
       self.salt = BCrypt::Engine.generate_salt
-      self.hashed = BCrypt::Engine.hash_secret(password, self.salt)
-      self.password = nil
+      self.fish = BCrypt::Engine.hash_secret(password, self.salt)
     end
   end
 end

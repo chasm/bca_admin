@@ -1,4 +1,4 @@
-attributes :id, :city, :email_address, :from_month, :from_year,
+attributes :id, :city, :email, :from_month, :from_year,
     :job_title, :monthly_pay_before_taxes, :name_of_company,
     :name_of_supervisor, :phone_number, :to_month, :to_year,
     :web_site_url, :zip_code, :credit_application
