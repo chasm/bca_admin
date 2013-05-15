@@ -36,10 +36,25 @@ class RestController < ApplicationController
       item = params[:controller].singularize.camelize.constantize.new params[symb]
       item.id = params[:id]
       
-      if item.save
-        render :show
-      else
-        render :errors, status: :unprocessable_entity # What status code should this return?
+      begin
+        if item.save
+          render :show
+        else
+          render :errors, status: :unprocessable_entity # What status code should this return?
+        end
+      rescue Mongoid::Errors::NoParent => e
+        unless @names.empty?
+          pname = @names.pop
+          parent = instance_variable_get("@#{pname}")
+          
+          item = parent.send(params[:controller]).create(params[symb])
+          
+          if item.save
+            render :show
+          else
+            render :errors, status: :unprocessable_entity # What status code should this return?
+          end
+        end
       end
     end
   end
@@ -60,11 +75,13 @@ class RestController < ApplicationController
   
   def pack_em_up
     chain = get_ancestors_and_self
+    @names = []
     
     while chain.length > 0 do
       item = chain.shift
       uuid = params[item] || params[:id]
       @name = item.chomp("_id")
+      @names << @name
       
       # First item, get the class, after that, get the association
       out = if out.nil?
@@ -87,5 +104,7 @@ class RestController < ApplicationController
         head :not_found unless params[:action] == "update"
       end
     end
+    
+    @names.pop
   end
 end

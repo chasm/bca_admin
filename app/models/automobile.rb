@@ -43,7 +43,7 @@ class Automobile
     Date.today.year + 1
   end
   
-  attr_accessible :_id, :air_conditioning, :all_wheel_drive, :alloy_wheels,
+  attr_accessible :id, :air_conditioning, :all_wheel_drive, :alloy_wheels,
     :am, :antilock_brakes, :auto_climate_control, :automatic, :carfax,
     :cd, :color, :cruise_control, :cylinders, :displacement, :doors, :dual_zone,
     :extras, :fm, :fully_serviced, :heated_seats_front, :heated_seats_rear,
@@ -54,7 +54,7 @@ class Automobile
     :special_features, :status, :stock_number, :style, :telescoping_steering,
     :tilt_steering, :tow_package, :year, :credit_applications
   
-  field :_id, type: String
+  field :id, type: String
   field :stock_number, type: String
   field :year, type: Integer
   field :make, type: String
@@ -106,6 +106,8 @@ class Automobile
   field :nice_to_have, type: String
   field :extras, type: String
   
+  before_validation :downcase_style_and_status
+  
   validates :stock_number,  presence: true, uniqueness: true
   validates :year,          presence: true,
                             numericality: {
@@ -128,5 +130,12 @@ class Automobile
   
   def name
     [self.year, self.make, self.model].compact.join(" ")
+  end
+  
+  private
+  
+  def downcase_style_and_status
+    self.style.downcase! if self.style
+    self.status.downcase! if self.status
   end
 end

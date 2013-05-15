@@ -12,11 +12,11 @@ class CreditApplication
     ['new', 'pending', 'approved', 'denied']
   end
   
-  attr_accessible :_id, :authorized, :date_of_birth, :drivers_license_number,
+  attr_accessible :id, :authorized, :date_of_birth, :drivers_license_number,
     :loan_amount, :sales_person, :social_security_number, :status,
     :automobile, :user, :employers, :locations, :automobile_id
   
-  field :_id, type: String
+  field :id, type: String
   field :drivers_license_number, type: String
   field :date_of_birth, type: Date
   field :social_security_number, type: String
@@ -25,7 +25,7 @@ class CreditApplication
   field :authorized, type: Boolean
   field :status, type: String, default: 'new'
   
-  before_validation :parse_ssn
+  before_validation :parse_ssn_and_downcase_status
   
   # validates_acceptance_of :authorized
   # validates_associated :employers
@@ -36,7 +36,8 @@ class CreditApplication
   
   private
   
-  def parse_ssn
+  def parse_ssn_and_downcase_status
     self.social_security_number.gsub!(/\D/,"") if self.social_security_number
+    self.status.downcase! if self.status
   end
 end

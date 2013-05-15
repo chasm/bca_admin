@@ -3,25 +3,24 @@ class PhoneNumber
   
   embedded_in :user
   
-  def self.phone_types
+  def self.usages
     ['mobile', 'work', 'home', 'fax', 'voip', 'pager']
   end
   
-  attr_accessible :_id, :extension, :line_number, :phone_type
+  attr_accessible :id, :digits, :usage
   
-  field :_id, type: String
-  field :line_number, type: String
-  field :extension, type: String
-  field :phone_type, type: String
+  field :id, type: String
+  field :digits, type: String
+  field :usage, type: String
   
-  before_validation :downcase_phone_type
+  before_validation :downcase_usage
   
-  validates_format_of :line_number, with: /^(?:\+?1[-. ]?)?(?:\(?([2-9][0-9]{2})\)?[-. ]?)?([2-9][0-9]{2})[-. ]?([0-9]{4})$/, message: "Phone number does not seem valid."
-  validates_inclusion_of :phone_type, in: self.phone_types, message: "Please select a phone type from #{self.phone_types.join(', ')}."
+  validates :digits, presence: true
+  validates :usage, inclusion: { in: self.usages, message: "Please select a phone type from #{self.usages.join(', ')}." }
   
   private
   
-  def downcase_phone_type
-    self.phone_type.downcase!
+  def downcase_usage
+    self.usage.downcase! if self.usage
   end
 end

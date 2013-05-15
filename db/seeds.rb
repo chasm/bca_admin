@@ -5,7 +5,7 @@ User.destroy_all
 
 autos = Automobile.create([
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     year:                        1977,
     make:                        "Chevy",
     model:                       "Monte Carlo",
@@ -52,7 +52,7 @@ autos = Automobile.create([
     status:                      "available"
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     year:                        1986,
     make:                        "Pontiac",
     model:                       "Firebird",
@@ -64,7 +64,7 @@ autos = Automobile.create([
     status:                      "available"
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     year:                        1970,
     make:                        "Pontiac",
     model:                       "Firebird",
@@ -79,35 +79,35 @@ autos = Automobile.create([
 
 registrants = Registrant.create([
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     email:                       "dotty@munat.com",
     code:                        SecureRandom.urlsafe_base64,
     expires_at:                  (Date.today + 1),
     automobile:                  autos[0]
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     email:                       "dorla@munat.com",
     code:                        SecureRandom.urlsafe_base64,
     expires_at:                  (Date.today + 1),
     automobile:                  autos[0]
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     email:                       "darlene@munat.com",
     code:                        SecureRandom.urlsafe_base64,
     expires_at:                  (Date.today + 1),
     automobile:                  autos[1]
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     email:                       "debbie@munat.com",
     code:                        SecureRandom.urlsafe_base64,
     expires_at:                  (Date.today + 1),
     automobile:                  autos[1]
   },
   {
-    _id:                         SecureRandom.uuid,
+    id:                         SecureRandom.uuid,
     email:                       "denise@munat.com",
     code:                        SecureRandom.urlsafe_base64,
     expires_at:                  (Date.today + 1),
@@ -117,7 +117,7 @@ registrants = Registrant.create([
 
 autos.each {|a| a.save }
 
-user = User.create _id:          SecureRandom.uuid,
+user = User.create id:          SecureRandom.uuid,
   name_first:                    "Charles",
   name_mi:                       "F.",
   name_last:                     "Munat",
@@ -127,18 +127,18 @@ user = User.create _id:          SecureRandom.uuid,
   password_confirmation:         "12345678",
   phone_numbers:          [
     {
-      _id:                       SecureRandom.uuid,
-      line_number:               "206 925 3872",
-      phone_type:                "voip"
+      id:                       SecureRandom.uuid,
+      digits:                    "206 925 3872",
+      usage:                     "voip"
     },
     { 
-      _id:                       SecureRandom.uuid,
-      line_number:               "206 842 4896",
-      phone_type:                "home"
+      id:                       SecureRandom.uuid,
+      digits:                    "206 842 4896",
+      usage:                     "home"
     }
   ]
 
-CreditApplication.create _id:    SecureRandom.uuid,
+CreditApplication.create id:    SecureRandom.uuid,
   drivers_license_number:        "DL410D7MUNA",
   date_of_birth:                 Date.new(1959,3,27),
   social_security_number:        "328 54 8012",
@@ -148,7 +148,7 @@ CreditApplication.create _id:    SecureRandom.uuid,
   status:                        "new",
   locations:  [
     {
-      _id:                       SecureRandom.uuid,
+      id:                       SecureRandom.uuid,
       address_line_one:          "5408 Meridian Ave. N. #204",
       city:                      "Seattle",
       zip_code:                  "98103",
@@ -160,7 +160,7 @@ CreditApplication.create _id:    SecureRandom.uuid,
       is_owner:                  false
     },
     {
-      _id:                       SecureRandom.uuid,
+      id:                       SecureRandom.uuid,
       address_line_one:          "5202 S. Dorchester #2A",
       city:                      "Chicago",
       zip_code:                  "60615",
@@ -174,9 +174,9 @@ CreditApplication.create _id:    SecureRandom.uuid,
   ],
   employers:  [
     {
-      _id:                       SecureRandom.uuid,
+      id:                       SecureRandom.uuid,
       name_of_company:           "Gunderson, Inc.",
-      phone_number:              "5035551212",
+      digits:              "5035551212",
       email:                     "info@gundersoninc.com",
       web_site_url:              "gundersoninc.com",
       city:                      "Portland",
@@ -189,9 +189,9 @@ CreditApplication.create _id:    SecureRandom.uuid,
       monthly_pay_before_taxes:  3500
     },
     {
-      _id:                       SecureRandom.uuid,
+      id:                       SecureRandom.uuid,
       name_of_company:           "University of Washington",
-      phone_number:              "20965551212",
+      digits:              "20965551212",
       email:                     "info@uw.edu",
       web_site_url:              "uw.edu",
       city:                      "Seattle",

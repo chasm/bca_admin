@@ -9,12 +9,12 @@ class User
   has_many :credit_applications
   has_many :logins
   
-  attr_accessible :_id, :code, :email, :expires_at, :is_admin, :password, :password_confirmation,
+  attr_accessible :id, :code, :email, :expires_at, :is_admin, :password, :password_confirmation,
     :name_first, :name_last, :name_mi, :credit_applications, :phone_numbers, :logins
     
   attr_accessor :password, :password_confirmation
   
-  field :_id, type: String
+  field :id, type: String
   field :name_first, type: String
   field :name_mi, type: String
   field :name_last, type: String
@@ -34,7 +34,7 @@ class User
   validates :name_first, presence: true
   validates :name_last, presence: true
   validates :email, presence: true, uniqueness: true
-  validates :password, confirmation: true, length: { minimum: 8 }
+  validates :password, confirmation: true #, length: { minimum: 8 }
   validates :phone_numbers, associated: true
   
   def name
