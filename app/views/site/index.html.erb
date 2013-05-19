@@ -1,6 +1,164 @@
-<div id="wrap">
-  <div id="header_region"></div>
-  <div id="main_region" class="container"></div>
-  <div id="push"></div>
-</div>
-<div id="footer_region"></div>
+<script type="text/x-handlebars" data-template-name="top-bar">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1><a href="/">Bridge City Automotive</a></h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li><a href="/autos">Autos</a></li>
+        <li class="divider"></li>
+        <li><a href="/apps">Credit Apps</a></li>
+        <li class="divider"></li>
+        <li><a href="/users">Users</a></li>
+        <li class="divider"></li>
+        <li><a href="/registrants">Registrants</a></li>
+        <li class="divider"></li>
+        <li class="has-form">
+          <a href="/logout" class="button alert">Log out</a>
+        </li>
+      </ul>
+    </section>
+  </nav>
+</script>
+
+<script type="text/x-handlebars" data-template-name="header">
+  <header>
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>Automobiles</h2>
+      </div>
+    </div>
+  </header>
+</script>
+
+<script type="text/x-handlebars" data-template-name="breadcrumbs">
+  <nav class="crumb">
+    <div class="row">
+      <div class="large-12 columns">
+        <a href="/">Home</a>
+        <span class="current">Autos</span>
+      </div>
+    </div>
+  </nav>
+</script>
+
+<script type="text/x-handlebars" data-template-name="footer">
+  <footer id="copyright">
+    <div class="row">
+      <div class="large-6 columns">
+        <p>&copy; 2013 Bridge City Autobrokers</p>
+      </div>
+      <div class="large-6 columns">
+        <ul class="inline-list right">
+          <li><a href="/">Public Site</a></li>
+          <li><a href="/profile">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</script>
+
+<script type="text/x-handlebars" data-template-name="pagebody">
+  <div class="row">
+    <div class="large-12 columns">
+      {{outlet}}&nbsp;
+    </div>
+  </div>
+</script>
+
+<script type="text/x-handlebars">
+  <nav class="top-bar">
+    <ul class="title-area">
+      <!-- Title Area -->
+      <li class="name">
+        <h1>{{#linkTo 'dashboard' }}Bridge City Automotive{{/linkTo}}</h1>
+      </li>
+      <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+      <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
+    </ul>
+
+    <section class="top-bar-section">
+      <!-- Right Nav Section -->
+      <ul class="right">
+        <li class="divider"></li>
+        <li>{{#linkTo 'autos' }}Autos{{/linkTo}}</li>
+        <li class="divider"></li>
+        <li>{{#linkTo 'apps' }}Credit Apps{{/linkTo}}</li>
+        <li class="divider"></li>
+        <li>{{#linkTo 'users' }}Users{{/linkTo}}</li>
+        <li class="divider"></li>
+        <li>{{#linkTo 'registrants' }}Registrants{{/linkTo}}</li>
+        <li class="divider"></li>
+        <li class="has-form">
+          <a href="/logout" class="button alert">Log out</a>
+        </li>
+      </ul>
+    </section>
+  </nav>
+
+  <header>
+    <div class="row">
+      <div class="large-12 columns">
+        <h2>Automobiles</h2>
+      </div>
+    </div>
+  </header>
+  
+  <nav class="crumb">
+    <div class="row">
+      <div class="large-12 columns">
+        {{#linkTo 'dashboard' }}Home{{/linkTo}}
+        <span class="current">Autos</span>
+      </div>
+    </div>
+  </nav>
+  
+  {{outlet}}
+  
+  <footer id="copyright">
+    <div class="row">
+      <div class="large-6 columns">
+        <p>&copy; 2013 Bridge City Autobrokers</p>
+      </div>
+      <div class="large-6 columns">
+        <ul class="inline-list right">
+          <li><a href="http://google.com/">Public Site</a></li>
+          <li>{{#linkTo 'profile' }}Profile{{/linkTo}}</li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</script>
+
+<script type="text/x-handlebars" data-template-name="dashboard">
+  <p>This is the dashboard.</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="autos">
+  <p>This is the autos list.</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="apps">
+  <p>This is the credit apps list.</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="users">
+  <p>This is the users list.</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="registrants">
+  <p>This is the registrants list.</p>
+</script>
+
+<script type="text/x-handlebars" data-template-name="profile">
+  <p>This is the user's profile.</p>
+</script>
+
