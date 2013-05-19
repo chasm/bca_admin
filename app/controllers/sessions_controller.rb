@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
   def create
     if params[:email]
       begin
-        @user = User.find({email: params[:email]})
+        @user = User.find_by({email: params[:email]})
     
         if params[:password].blank?
           UserMailer.reset_email(@user, request).deliver
@@ -17,15 +17,15 @@ class SessionsController < ApplicationController
         else
           if @user.authenticate(params[:password])
             session[:user_id] = @user.id
-      
+            
             login = Login.create :user => @user, :session => session[:session_id], :ip_address => request.remote_ip, :user_agent => request.user_agent,
               :referer => request.referer, :logged_in_at => DateTime.now
+              
             session[:login_id] = login.id
-      
+            
             redirect_to root_url, :notice => "Welcome to the Bridge City Automotive website admin interface."
           else
             flash.now.alert = "Invalid email or password"
-            
             render "new"
           end
         end
