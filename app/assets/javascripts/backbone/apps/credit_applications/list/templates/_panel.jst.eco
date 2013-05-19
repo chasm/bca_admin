@@ -1,1 +1,0 @@
-Total credit applications: <%= @items.length %>

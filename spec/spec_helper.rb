@@ -7,7 +7,7 @@ require 'rspec/autorun'
 require 'capybara/rails'
 require 'capybara/rspec'
 require 'database_cleaner'
-require 'factory_girl'
+require 'fabrication'
 
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
 
@@ -24,7 +24,11 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.include FactoryGirl::Syntax::Methods
+  # Fabrication.configure do |config|
+  #   config.fabricator_path = 'data/fabricators'
+  #   config.path_prefix = Rails.root
+  #   config.sequence_start = 10000
+  # end
 
   config.color_enabled = true
   config.tty = true

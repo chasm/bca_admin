@@ -1,24 +1,32 @@
 <div class="container">
   <div class="row">
-    <div class="span4">
+    <div class="large-3 columns">
       <%= image_tag 'megan.png', :class => 'logo' %>
     </div>
-    <div class="span5" style="margin-top: 100px">
+    <div class="large-5 columns" style="margin-top: 100px">
       <h2>Please log in!</h2>
       <form class="login_form" action="/login" method="post">
-        <p>
-          <input type="text" name="email" placeholder="Email address">
-        </p>
-        <p>
-          <input id="password" name="password" type="password" placeholder="Password">
-          <button id="show_button" class="btn btn-warning">Show Password</button>
-        </p>
-        <p>
-          <input type="submit" value="Log in" class="btn btn-info">
-        </p>
+        <div class="row">
+          <div class="large-7 columns">
+            <input type="text" name="email" placeholder="Email address">
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-7 columns">
+            <input id="password" name="password" type="password" placeholder="Password">
+          </div>
+          <div class="large-5 columns">
+            <button id="show_button" class="small button alert">Show Password</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="large-12 columns">
+            <input type="submit" value="Log in" class="small button">
+          </div>
+        </div>
       </form>
     </div>
-    <div class="span3" style="margin-top: 100px">
+    <div class="large-4 columns" style="margin-top: 100px">
       <h3>Lost password?</h3>
       <p>
         No problem! To reset your password, simply leave the password field blank when you
@@ -39,19 +47,17 @@
     password = $('#password');
     
     show_button.on('click', function() {
-      if ($(this).hasClass('active')) {
+      if ($(this).hasClass('success')) {
         password.attr('type','password');
         show_button.html("Show Password");
-        show_button.removeClass('btn-success');
-        show_button.removeClass('active');
-        show_button.addClass('btn-warning');
+        show_button.removeClass('success');
+        show_button.addClass('alert');
     
       } else {
         password.attr('type','text');
         show_button.html("Hide Password");
-        show_button.removeClass('btn-warning');
-        show_button.addClass('btn-success');
-        show_button.addClass('active');
+        show_button.removeClass('alert');
+        show_button.addClass('success');
       }
       return false;
     });

@@ -7,11 +7,11 @@ class Location
     [ 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec' ]
   end
   
-  attr_accessible :_id, :address_line_one, :address_line_two, :city,
+  attr_accessible :id, :address_line_one, :address_line_two, :city,
     :from_month, :from_year, :is_owner, :monthly_rent_or_mortgage,
     :to_month, :to_year, :zip_code, :credit_application
   
-  field :_id, type: String
+  field :id, type: String
   field :address_line_one, type: String
   field :address_line_two, type: Integer
   field :city, type: String
