@@ -11,6 +11,8 @@ gem "gon"
 gem "js-routes"
 gem "jquery-rails"
 gem "bcrypt-ruby"
+gem 'cocoon'
+gem 'turbolinks'
 
 group :development, :test do
   gem "better_errors"
